@@ -1,4 +1,4 @@
-import "./../styles/expenseDate.css";
+import "./../../styles/expenseDate.css";
 
 function ExpenseDate({date}) {
 
