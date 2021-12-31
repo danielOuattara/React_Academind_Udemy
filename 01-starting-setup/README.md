@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Assignment 1
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The goal is to complete the assignment 1.
+
+## Output
+
+<img src="https://github.com/danielOuattara/React_Academind_Udemy/blob/master/01-starting-setup/assignment-1-result.png" alt="assignment 1 output" style=" max-width:100% width:200px"/>
 
 ## Available Scripts
 
