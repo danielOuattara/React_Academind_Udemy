@@ -76,23 +76,29 @@ function ExpenseForm() {
         })
 
     const handleExpenseTitle = (event) => {
-        setUserInput({
-            ...userInput,
-            title: event.target.value
+        setUserInput( (prevState) => { // good for Async from React itself
+            return {
+                ...prevState,
+                title: event.target.value
+            }            
         });
     }
 
     const handleExpenseAmount = (event) => {
-        setUserInput({
-            ...userInput,
-            amount: event.target.value
+        setUserInput((prevState) => { // good for Async from React itself
+            return {
+                ...prevState,
+                amount: event.target.value
+            }
         });
     }
     
     const handleExpenseDate = (event) => {
-        setUserInput({
-            ...userInput,
-            date: event.target.value
+        setUserInput((prevState) => { // good for Async from React itself
+            return {
+                ...prevState,
+                date: event.target.value
+            }
         });
     }
 
