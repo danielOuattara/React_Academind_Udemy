@@ -1,12 +1,19 @@
 import './../../styles/expenseForm.css';
 
 function ExpenseForm() {
+
+    const handleExpenseTitle = (event) => {
+        console.log(event.target.value);
+    }
+
+    
+
     return (
         <form>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label htmlFor="title">Title</label>
-                    <input type="text" />
+                    <input type="text" onChange={handleExpenseTitle} />
                 </div>
                 <div className="new-expense__control">
                     <label htmlFor="amount">Amount</label>
