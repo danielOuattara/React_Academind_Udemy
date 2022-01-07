@@ -35,7 +35,13 @@ function App() {
   const [ expenses, setExpenses] = useState(initialData);
 
   const addNewExpense = (data) => {
-    console.log("data = ", data);   
+    console.log("data = ", data);
+    // console.log(...expenses);    
+    // console.log([...expenses]);    
+    setExpenses( () => {
+       return expenses;
+    });
+
   }
 
   return (
