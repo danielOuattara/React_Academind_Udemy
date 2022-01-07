@@ -1,6 +1,8 @@
 
 import "./../../styles/newExpense.css";
 import ExpenseForm from './ExpenseForm';
+import {useState} from 'react';
+
 
 function NewExpense({addNewExpense}) {
 
@@ -11,10 +13,28 @@ function NewExpense({addNewExpense}) {
         }
         return addNewExpense(expenseData);
     }
+    
+    const [ showForm, setShowForm] = useState(false);
+
+    const handleShowForm = () => {
+        setShowForm ( () => {
+            return !showForm;
+        });
+    }
 
     return (
         <div className="new-expense">
-            <ExpenseForm handleSendExpense={handleReceiveExpense} />
+            { 
+                !showForm && 
+                <button onClick={handleShowForm }>Add New Expense</button>
+            }
+            { 
+                showForm && 
+                <ExpenseForm 
+                  handleSendExpense={handleReceiveExpense} 
+                  handleShowForm={handleShowForm}
+                />
+            }
         </div>
     );
 }
