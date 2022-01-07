@@ -152,6 +152,7 @@ import Card from './../UI/Card';
 
 import ExpensesList from './ExpensesList';
 import ExpensesFilter from './ExpensesFilter';
+import ExpensesChart from './ExpensesChart';
 
 function Expenses({expenses}) {
 
@@ -170,6 +171,7 @@ function Expenses({expenses}) {
         <div>
             <Card className="expenses">
                 <ExpensesFilter handleFilteredYear={handleFilteredYear}/>
+                <ExpensesChart filteredExpenses={filteredExpenses}/>
                 <ExpensesList filteredExpenses={filteredExpenses} year={year} /> 
             </Card>
         </div>

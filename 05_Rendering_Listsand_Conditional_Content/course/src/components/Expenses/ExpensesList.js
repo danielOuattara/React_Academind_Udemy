@@ -9,7 +9,7 @@ function ExpensesList({ filteredExpenses, year}) {
     }
 
     return (
-        <ul className='expense-list'>
+        <ul className='expenses-list'>
             {filteredExpenses.map((item) => {
                 return ( 
                     <ExpenseItem 

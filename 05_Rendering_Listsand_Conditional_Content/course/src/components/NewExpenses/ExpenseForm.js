@@ -27,7 +27,7 @@ function ExpenseForm({handleSendExpense, handleShowForm}) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const expenseData = { title, amount, date: new Date(date) };
+        const expenseData = { title, amount: +amount, date: new Date(date) };
         handleSendExpense(expenseData);
         setTitle('');
         setAmount('');
