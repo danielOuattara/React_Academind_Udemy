@@ -1,3 +1,6 @@
+/* conditional rendering method 1 
+-----------------------------------*/
+
 // import { useState } from 'react';
 // import './../../styles/expenses.css';
 // import Card from './../UI/Card';
@@ -40,7 +43,9 @@
 // export default Expenses;
 
 //-----------------------------------------------------------------------
-// 
+
+/* conditional rendering method 2 
+-----------------------------------*/
 
 // import { useState } from 'react';
 // import './../../styles/expenses.css';
@@ -86,11 +91,66 @@
 
 //-----------------------------------------------------------------------
 
+/* conditional rendering method 3 (BACK UP)
+-----------------------------------*/
+
+// import { useState } from 'react';
+// import './../../styles/expenses.css';
+// import Card from './../UI/Card';
+
+// import ExpenseItem from './ExpenseItem';
+// import ExpensesFilter from './ExpensesFilter';
+
+// function Expenses({expenses}) {
+
+//     const [year, setYear ] = useState("");
+    
+//     const handleFilteredYear = (yearReceived) => {
+//         setYear(() => {
+//             return yearReceived;
+//         });
+//     }
+//     let filteredExpenses = year === "" ? 
+//         expenses 
+//         : 
+//         expenses.filter(item => item.date.getFullYear() === Number(year));
+
+//     let expensesContent = <h2 style={{color: "white"}}>No Data for {year}</h2>;
+    
+//     if(filteredExpenses.length > 0) {
+//         expensesContent = filteredExpenses.map((item) => {
+//             return ( 
+//                 <ExpenseItem 
+//                     key={item.id} 
+//                     title={item.title} 
+//                     date={item.date} 
+//                     amount={item.amount}
+//                 />
+//             );
+//         });
+//     }
+//     return (
+//         <div>
+//             <Card className="expenses">
+//                 <ExpensesFilter handleFilteredYear={handleFilteredYear}/>
+//                 { expensesContent }
+ 
+//             </Card>
+//         </div>
+//     );
+// }
+
+// export default Expenses;
+
+
+/* conditional rendering method 3 
+-----------------------------------*/
+
 import { useState } from 'react';
 import './../../styles/expenses.css';
 import Card from './../UI/Card';
 
-import ExpenseItem from './ExpenseItem';
+import ExpensesList from './ExpensesList';
 import ExpensesFilter from './ExpensesFilter';
 
 function Expenses({expenses}) {
@@ -102,30 +162,15 @@ function Expenses({expenses}) {
             return yearReceived;
         });
     }
+    
     let filteredExpenses = year === "" ? 
-        expenses 
-        : 
-        expenses.filter(item => item.date.getFullYear() === Number(year));
+        expenses : expenses.filter(item => item.date.getFullYear() === Number(year));
 
-    let expensesContent = <h2 style={{color: "white"}}>No Data for {year}</h2>;
-    if(filteredExpenses.length > 0) {
-        expensesContent = filteredExpenses.map((item) => {
-            return ( 
-                <ExpenseItem 
-                    key={item.id} 
-                    title={item.title} 
-                    date={item.date} 
-                    amount={item.amount}
-                />
-            );
-        });
-    }
     return (
         <div>
             <Card className="expenses">
                 <ExpensesFilter handleFilteredYear={handleFilteredYear}/>
-                { expensesContent }
- 
+                <ExpensesList filteredExpenses={filteredExpenses} year={year} /> 
             </Card>
         </div>
     );
