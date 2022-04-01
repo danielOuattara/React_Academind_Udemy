@@ -1,11 +1,12 @@
-
-function ListUsers({allUsers}) {
+function ListUsers({ allUsers }) {
   return (
-    <div className='users-list'>
-      {allUsers.map( user => {
-        const { username, age, id } = user
+    <div className="users-list">
+      {allUsers.map((user) => {
+        const { username, age, id } = user;
         return (
-          <p className='user-data' key={id}>{ username}  ({age} years old)</p>
+          <p className="user-data" key={id}>
+            {username} ({age} years old)
+          </p>
         );
       })}
     </div>
