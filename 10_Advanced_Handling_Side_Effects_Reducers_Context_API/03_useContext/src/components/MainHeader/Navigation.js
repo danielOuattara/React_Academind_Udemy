@@ -1,12 +1,12 @@
 // import React from "react";
-// import AuthContext from "./../../context/AuthContext";
-
+// import { AuthContext } from "./../../context/AuthContext";
 // import classes from "./Navigation.module.css";
 
-// const Navigation = (props) => {
+// const Navigation = () => {
 //   return (
 //     <AuthContext.Consumer>
 //       {(context) => {
+//         console.log(context);
 //         return (
 //           <nav className={classes.nav}>
 //             <ul>
@@ -22,7 +22,7 @@
 //               )}
 //               {context.isLoggedIn && (
 //                 <li>
-//                   <button onClick={props.onLogout}>Logout</button>
+//                   <button onClick={context.onLogout}>Logout</button>
 //                 </li>
 //               )}
 //             </ul>
@@ -38,11 +38,12 @@
 //-----------------------------------------------------------------------
 
 import React, { useContext } from "react";
-import AuthContext from "./../../context/AuthContext";
+import { AuthContext } from "./../../context/AuthContext";
 import classes from "./Navigation.module.css";
 
-const Navigation = (props) => {
-  const { isLoggedIn, onLogout } = useContext(AuthContext)
+const Navigation = () => {
+  const { isLoggedIn, onLogout } = useContext(AuthContext);
+
   return (
     <nav className={classes.nav}>
       <ul>
@@ -56,12 +57,9 @@ const Navigation = (props) => {
             <a href="/">Admin</a>
           </li>
         )}
-        {isLoggedIn && (
-          <li>
-            <button onClick={onLogout}>Logout</button>
-          </li>
-        )}
+        {isLoggedIn && <li>{<button onClick={onLogout}>Logout</button>}</li>}
       </ul>
+      <p>Navigation</p>
     </nav>
   );
 };
