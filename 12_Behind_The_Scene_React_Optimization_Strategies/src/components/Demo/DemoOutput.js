@@ -5,4 +5,5 @@ function DemoOutput(props) {
   return <p>{props.show ? "This is a paragraph" : ""}</p>;
 }
 
-export default DemoOutput;
+export default React.memo(DemoOutput);
+/* React.memo() for functionnal components only  */
