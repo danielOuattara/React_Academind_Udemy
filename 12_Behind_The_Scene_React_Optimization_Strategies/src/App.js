@@ -74,19 +74,26 @@ import Button from "./components/UI/Button/Button";
 
 function App() {
   const [showParagraph, setShowParagraph] = useState(false);
+  const [allowToggle, setAllowToggle] = useState(false)
 
   console.log("APP RUNNING");
 
+  const allowToggleHandler = () => {
+    setAllowToggle(true)
+  }
+
   const toggleParagraph = useCallback(() => {
-    setShowParagraph((showParagraph) => !showParagraph);
+    if(allowToggle) {
+      setShowParagraph((showParagraph) => !showParagraph);
+    }
   }, []);
 
   return (
     <div className="app">
       <h1>Hi there!</h1>
       {/* This is not sensible to useCallback() */}
-      {/* <Button onClick={() => toggleParagraph()}>Toggle Paragraph</Button> */} 
-      
+      {<Button onClick={() => toggleParagraph()}>Toggle Paragraph</Button>}
+
       {/* This is working on useCallback */}
       <Button onClick={toggleParagraph}>Toggle Paragraph</Button>
       <DemoOutput /> {/* See in console */}
@@ -96,8 +103,7 @@ function App() {
        the parent component is re-evaluated  */
   );
 
-
-  /*
+/*
 useCallback is a React hook. Used on callback functions.
 It will return a memoized version of the callback that 
 change only if one of callback's dependencies changes
