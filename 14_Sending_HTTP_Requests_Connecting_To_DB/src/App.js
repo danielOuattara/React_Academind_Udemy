@@ -41,7 +41,7 @@
 
 //----------------------------------------------------------------------
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import MoviesList from "./components/MoviesList";
 import IsLoading from "./components/IsLoading";
@@ -51,7 +51,7 @@ function App() {
   const [isloading, setIsloading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function fetchMoviesHandler() {
+  const fetchMoviesHandler = useCallback(async () => {
     try {
       setIsloading(true);
       const response = await fetch("https://swapi.dev/api/films/");
@@ -75,7 +75,12 @@ function App() {
       setIsloading(false);
       console.log(error);
     }
-  }
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
+
   // if (isloading) {
   //   return <IsLoading />;
   // }
