@@ -43,8 +43,8 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
+import AddMovie from "./components/AddMovie";
 import MoviesList from "./components/MoviesList";
-import IsLoading from "./components/IsLoading";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -59,6 +59,7 @@ function App() {
         setError(response.status + " " + response.statusText);
         throw new Error(response.status + " " + response.statusText);
       }
+
       const data = await response.json();
       const movies = data.results.map((movie) => {
         return {
@@ -69,6 +70,7 @@ function App() {
         };
       });
 
+      setIsloading(false);
       setMovies(movies);
       setIsloading(false);
     } catch (error) {
@@ -84,6 +86,10 @@ function App() {
   // if (isloading) {
   //   return <IsLoading />;
   // }
+
+  function addMovieHandler(movie) {
+    console.log(movie);
+  }
 
   let content = <p>Click Above to Request Movies</p>;
 
@@ -101,6 +107,9 @@ function App() {
 
   return (
     <React.Fragment>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
