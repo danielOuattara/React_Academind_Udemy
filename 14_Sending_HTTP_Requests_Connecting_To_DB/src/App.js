@@ -1,97 +1,56 @@
-// import React, { useState } from "react";
-
-// import MoviesList from "./components/MoviesList";
-// import "./App.css";
-
-// function App() {
-//   const [movies, setMovies] = useState([]);
-
-//   function fetchMoviesHandler() {
-//     fetch("https://swapi.dev/api/films/")
-//       .then((response) => {
-//         return response.json();
-//       })
-//       .then((data) => {
-//         const movies = data.results.map((movie) => {
-//           return {
-//             id: movie.episode_id,
-//             title: movie.title,
-//             openingText: movie.opening_crawl,
-//             releaseDate: movie.release_date,
-//           };
-//         });
-
-//         setMovies(movies);
-//       });
-//   }
-
-//   return (
-//     <React.Fragment>
-//       <section>
-//         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
-//       </section>
-//       <section>
-//         <MoviesList movies={movies} />
-//       </section>
-//     </React.Fragment>
-//   );
-// }
-
-// export default App;
-
-//----------------------------------------------------------------------
-
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
-import AddMovie from "./components/AddMovie";
 import MoviesList from "./components/MoviesList";
+import AddMovie from "./components/AddMovie";
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [isloading, setIsloading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchMoviesHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
     try {
-      setIsloading(true);
       const response = await fetch("https://swapi.dev/api/films/");
       if (!response.ok) {
-        setError(response.status + " " + response.statusText);
-        throw new Error(response.status + " " + response.statusText);
+        throw new Error("Something went wrong!");
       }
 
       const data = await response.json();
-      const movies = data.results.map((movie) => {
+
+      const transformedMovies = data.results.map((movieData) => {
         return {
-          id: movie.episode_id,
-          title: movie.title,
-          openingText: movie.opening_crawl,
-          releaseDate: movie.release_date,
+          id: movieData.episode_id,
+          title: movieData.title,
+          openingText: movieData.opening_crawl,
+          releaseDate: movieData.release_date,
         };
       });
-
-      setIsloading(false);
-      setMovies(movies);
-      setIsloading(false);
+      setMovies(transformedMovies);
     } catch (error) {
-      setIsloading(false);
-      console.log(error);
+      setError(error.message);
     }
+    setIsLoading(false);
   }, []);
 
   useEffect(() => {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
 
-  // if (isloading) {
-  //   return <IsLoading />;
-  // }
-
-  function addMovieHandler(movie) {
-    console.log(movie);
+  async function addMovieHandler(movie) {
+    const post_url =
+      "https://react-http-academind-a983a-default-rtdb.europe-west1.firebasedatabase.app/movies.json";
+    const response = await fetch(post_url, {
+      method: "POST",
+      body: JSON.stringify(movie),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await response.json();
+    console.log(data);
   }
 
-  let content = <p>Click Above to Request Movies</p>;
+  let content = <p>Found no movies.</p>;
 
   if (movies.length > 0) {
     content = <MoviesList movies={movies} />;
@@ -101,7 +60,7 @@ function App() {
     content = <p>{error}</p>;
   }
 
-  if (isloading) {
+  if (isLoading) {
     content = <p>Loading...</p>;
   }
 
@@ -113,15 +72,7 @@ function App() {
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
-      <section>
-        {/* {isloading && <p>Loading ...</p>}
-        {!isloading && movies.length === 0 && !error && <p></p>}
-        {!isloading && movies.length > 0 && } */}
-        {/* {!isloading && error && <p>{error}</p>} */}
-        {content}
-
-        <MoviesList movies={movies} />
-      </section>
+      <section>{content}</section>
     </React.Fragment>
   );
 }
