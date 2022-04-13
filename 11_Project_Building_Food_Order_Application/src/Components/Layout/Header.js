@@ -3,6 +3,7 @@ import styles from "./Header.module.css";
 import mealsImage from "./../../assets/meals.jpg";
 import HeaderCartButton from "./HeaderCartButton";
 
+
 function Header(props) {
   return (
     <React.Fragment>

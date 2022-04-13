@@ -1,4 +1,4 @@
-export const meals_list = [
+export const DUMMY_MEALS = [
   {
     id: 'm1',
     name: 'Sushi',
