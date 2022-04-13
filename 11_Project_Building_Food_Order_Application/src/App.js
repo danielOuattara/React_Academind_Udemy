@@ -1,28 +1,12 @@
-import { useState } from "react";
+import React from "react";
 import "./App.css";
-import Header from "./Components/Header/Header";
-import { meals_list } from "./data/dummy-meals";
-import MealsSummary from "./Components/MealSummary/MealsSummary";
-import CartItem from "./Components/CartItem/CartItem";
-import AvailableMeals from "./Components/Meals/AvailableMeals";
+import Header from "./Components/Layout/Header";
+
 function App() {
-  const [userMeals, setUserMeals] = useState([]);
-
-  const onRemove = (id) => {
-    return userMeals.filter((item) => item.id !== id);
-  };
-
-  const onAdd = (id) => {
-    const mealToAdd = meals_list.filter((item) => item.id === id);
-    return userMeals.push(mealToAdd);
-  };
-
   return (
-    <div className>
+    <React.Fragment>
       <Header />
-      <MealsSummary />
-      <AvailableMeals />
-    </div>
+    </React.Fragment>
   );
 }
 
