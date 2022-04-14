@@ -4,7 +4,7 @@ import styles from "./HeaderCartButton.module.css";
 
 function HeaderCartButton(props) {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} onClick={props.showCartHandler}>
       <span className={styles.icon}>
         <div style={{ border: "1px solid yellow" }}>
           <CartIcon />
