@@ -4,6 +4,7 @@
   margin: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #ccc;
+  border: 1px solid rgb(242, 0, 255)
 }
 
 .meal h3 {

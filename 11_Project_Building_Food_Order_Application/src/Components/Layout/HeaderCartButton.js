@@ -6,7 +6,9 @@ function HeaderCartButton(props) {
   return (
     <button className={styles.button}>
       <span className={styles.icon}>
-        <CartIcon />
+        <div style={{ border: "1px solid yellow" }}>
+          <CartIcon />
+        </div>
       </span>
       <span> Your Cart </span>
       <span className={styles.badge}> 3 </span>
