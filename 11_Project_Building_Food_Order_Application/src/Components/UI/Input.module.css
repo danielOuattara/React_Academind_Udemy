@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
-  border: 1px solid rgb(247, 0, 255);
 }
 
 .input label {

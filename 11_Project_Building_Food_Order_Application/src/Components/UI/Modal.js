@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./Modal.module.css";
 import ReactDOM from "react-dom";
+import { Fragment } from "react";
+import styles from "./Modal.module.css";
 
 //-------------------------------------
 function Backdrop(props) {
@@ -20,22 +20,46 @@ function ModalOverlay(props) {
   );
 }
 
-//-------------------------------------
+//----------------------------------------------------------------------
+/* Two portal for 2 components
+------------------------------*/
 
+// const portalDomTarget = document.getElementById("overlays");
+
+// function Modal(props) {
+//   return (
+//     <Fragment>
+//       {ReactDOM.createPortal(
+//         <Backdrop hideCartHandler={props.hideCartHandler} />,
+//         portalDomTarget
+//       )}
+//       {ReactDOM.createPortal(
+//         <ModalOverlay>{props.children}</ModalOverlay>,
+//         portalDomTarget
+//       )}
+//     </Fragment>
+//   );
+// }
+
+// export default Modal;
+
+
+//----------------------------------------------------------------------
+/* One portal for 2 components 
+--------------------------------*/
 const portalDomTarget = document.getElementById("overlays");
 
 function Modal(props) {
   return (
-    <React.Fragment>
+    <Fragment>
       {ReactDOM.createPortal(
-        <Backdrop hideCartHandler={props.hideCartHandler} />,
+        <>
+          <Backdrop hideCartHandler={props.hideCartHandler} />
+          <ModalOverlay>{props.children}</ModalOverlay>
+        </>,
         portalDomTarget
       )}
-      {ReactDOM.createPortal(
-        <ModalOverlay>{props.children}</ModalOverlay>,
-        portalDomTarget
-      )}
-    </React.Fragment>
+    </Fragment>
   );
 }
 

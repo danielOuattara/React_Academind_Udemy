@@ -1,15 +1,13 @@
-import React from "react";
-import AvailableMeals from "./AvailableMeals";
+import { Fragment } from "react";
 import MealsSummary from "./MealsSummary";
+import AvailableMeals from "./AvailableMeals";
 
 function Meals() {
   return (
-    <div style={{ border: "1px solid green", marginTop: "1rem" }}>
-      <React.Fragment>
-        <MealsSummary />
-        <AvailableMeals />
-      </React.Fragment>
-    </div>
+    <Fragment>
+      <MealsSummary />
+      <AvailableMeals />
+    </Fragment>
   );
 }
 
