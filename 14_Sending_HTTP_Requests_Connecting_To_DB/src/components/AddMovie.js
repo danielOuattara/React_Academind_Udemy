@@ -17,12 +17,11 @@ function AddMovie(props) {
       releaseDate: releaseDateRef.current.value,
     };
 
-    props.onAddMovie(movie);
+    props.addMovieHandler(movie);
   }
 
   return (
     <form onSubmit={submitHandler}>
-
       <div className={classes.control}>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" ref={titleRef} />
@@ -37,7 +36,7 @@ function AddMovie(props) {
         <label htmlFor="date">Release Date</label>
         <input type="text" id="date" ref={releaseDateRef} />
       </div>
-      
+
       <button>Add Movie</button>
     </form>
   );

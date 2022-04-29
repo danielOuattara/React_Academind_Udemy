@@ -10,15 +10,12 @@ function App() {
 
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
-    setError(null);
     try {
       const response = await fetch('https://swapi.dev/api/films/');
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
-
       const data = await response.json();
-
       const transformedMovies = data.results.map((movieData) => {
         return {
           id: movieData.episode_id,
