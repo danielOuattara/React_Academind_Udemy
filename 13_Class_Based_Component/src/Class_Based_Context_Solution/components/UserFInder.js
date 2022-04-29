@@ -10,9 +10,9 @@ export class UserFInder extends Component {
     const { searchChangeHandler } = this.context
     return (
       <Fragment>
-        <dir className={classes.finder}>
+        <div className={classes.finder}>
           <input type="search" onChange={searchChangeHandler} />
-        </dir>
+        </div>
         <Users />
       </Fragment>
     );
