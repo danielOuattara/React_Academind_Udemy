@@ -8,7 +8,6 @@ const NewTask = (props) => {
 
   const enterTaskHandler = async (taskText) => {
     setIsLoading(true);
-    setError(null);
     try {
       const response = await fetch(props.url, {
         method: "POST",
@@ -21,9 +20,7 @@ const NewTask = (props) => {
       if (!response.ok) {
         throw new Error("Request failed!");
       }
-      const data = await response.json();
-      console.log(" data from post = ", data);
-      
+      const data = await response.json();      
       const generatedId = data.name; // firebase-specific => "name" contains generated id
       const createdTask = { id: generatedId, text: taskText };
       props.onAddTask(createdTask);

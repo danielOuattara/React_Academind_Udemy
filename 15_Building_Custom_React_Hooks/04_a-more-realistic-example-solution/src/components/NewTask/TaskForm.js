@@ -35,7 +35,6 @@
 //======================================================================
 
 import { useRef } from "react";
-
 import classes from "./TaskForm.module.css";
 
 const TaskForm = (props) => {
@@ -45,9 +44,9 @@ const TaskForm = (props) => {
     event.preventDefault();
     const enteredValue = taskInputRef.current.value;
     if (enteredValue.trim().length > 0) {
-      props.onEnterTask(enteredValue);
+      props.enterTaskHandler(enteredValue);
     }
-    taskInputRef.current.value = ""
+    taskInputRef.current.value = "";
   };
 
   return (

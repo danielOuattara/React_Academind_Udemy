@@ -1,22 +1,4 @@
-// import { Fragment } from "react";
-// import Tasks from "./components/Tasks/Tasks";
-// import TaskForm from "./components/NewTask/TaskForm";
-
-// const url =
-//   "https://react-hooks-academind-7a700-default-rtdb.europe-west1.firebasedatabase.app/tasks.json";
-
-// function App() {
-//   return (
-//     <Fragment>
-//       <TaskForm url={url} />
-//       <Tasks url={url} />
-//     </Fragment>
-//   );
-// }
-
-// export default App;
-
-//==========================================================================================
+/* N°1 */
 
 // import React, { useEffect, useState, useCallback } from "react";
 // import Tasks from "./components/Tasks/Tasks";
@@ -50,7 +32,7 @@
 //     () => {
 //       fetchTasks();
 //     },
-//     [fetchTasks ]
+//     [fetchTasks ]  // DO NOT SET fetchTasks as a dependency, infinite loop requests
 //   );
 
 //   const taskAddHandler = (task) => {
@@ -73,6 +55,8 @@
 // export default App;
 
 // ================================================================================
+
+/* N°2 */
 
 /* Try not to use React.memo to garanty that url wont change on re-render, causing
 the app to re-render itself infinitly */
@@ -127,7 +111,7 @@ the app to re-render itself infinitly */
 
 // ================================================================================
 
-/* Try to avoid useCallback */
+/* N°3: Try to avoid useCallback in App.js */
 
 import React, { useEffect, useState } from "react";
 import Tasks from "./components/Tasks/Tasks";
@@ -143,6 +127,8 @@ function App() {
   const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
   useEffect(() => {
+    // Here "transform" task is defined inside the useEffect, 
+    // thus, avoidin useCallback & dependencies call
     const tasksTranformer = (data) => {
       const loadedTasks = [];
       for (const taskKey in data) {
@@ -160,7 +146,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <NewTask onAddTask={taskAddHandler} url={url} />
+      <NewTask taskAddHandler={taskAddHandler} url={url} />
       <Tasks
         items={tasks}
         loading={isLoading}

@@ -1,3 +1,7 @@
+
+//--------------------------------------------------------
+/* N°1 */
+
 // import { useState, useCallback } from "react";
 
 // function useHttp(requestConfig, applyData) {
@@ -32,12 +36,12 @@
 // export default useHttp;
 
 //=====================================================================================
+/* N°2 */
 
 /* Try not to use React.memo to garanty that url wont change on re-render, causing
-the app to re-render itself infinitly 
+the app to re-render itself infinitly: so moving the requestConfig object in sendRequest()
 
 So below are the modifications needed to achieve this
-
 */
 
 // import { useState, useCallback } from "react";
@@ -46,7 +50,9 @@ So below are the modifications needed to achieve this
 //   const [isLoading, setIsLoading] = useState(false);
 //   const [error, setError] = useState(null);
 
-//   const sendRequest = useCallback(async(requestConfig, ) => {
+     // "requestConfig" is now a param of sendRequest() which is ender useCallback, 
+     // so no more a possible dependency for useCallback
+//   const sendRequest = useCallback(async(requestConfig) => {
 //     try {
 //       setIsLoading(true);
 //       const response = await fetch(requestConfig.url, {
@@ -64,7 +70,7 @@ So below are the modifications needed to achieve this
 //       setError(err.message || "Something went wrong!");
 //     }
 //     setIsLoading(false);
-//   }, [ applyData]);
+//   }, [ applyData]);  // Only applyData is called here as dependency for useCallback
 
 //   return { isLoading, error, sendRequest };
 // }
@@ -73,12 +79,13 @@ So below are the modifications needed to achieve this
 
 //=====================================================================================
 
-/* Try to avoid useCallback */
+/* /* N°3:  Try to avoid useCallback App.js */
 
 import { useState, useCallback } from "react";
 
 function useHttp() {
   const [isLoading, setIsLoading] = useState(false);
+
   const [error, setError] = useState(null);
 
   const sendRequest = useCallback(async (requestConfig, applyData) => {
