@@ -10,8 +10,9 @@ const url =
 
 function Cart(props) {
   const [isCheckOut, setIsCheckOut] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
 
@@ -25,11 +26,11 @@ function Cart(props) {
 
   const handleUserConfirm = async (userData) => {
     try {
-      setIsLoading(true);
+      setIsSubmitting(true);
       const response = await fetch(url, {
         method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           user: userData,
@@ -39,45 +40,67 @@ function Cart(props) {
       });
 
       if (!response.ok) {
-        setIsLoading(false);
+        setIsSubmitting(false);
         throw new Error(`${response.statusText} ${response.status} `);
       }
 
       const data = await response.json();
-      console.log(data, data);
+      console.log("data = ", data);
+      if (data) {
+        setSubmitSuccess(true);
+      }
     } catch (error) {
       setError(error.message);
       console.log(error);
     } finally {
-      setIsLoading(false);
+      setIsSubmitting(false);
     }
   };
 
-  return (
-    <Modal hideCartHandler={props.hideCartHandler}>
-      <ul className={styles["cart-items"]}>
-        {items.map((item) => (
-          <CartItem
-            key={item.id}
-            {...item}
-            cartItemRemove={cartItemRemove.bind(null, item.id)}
-            cartItemAdd={cartItemAdd.bind(null, item)}
-          />
-        ))}
-      </ul>
+  const cartItems = (
+    <>
+      {!isSubmitting && (
+        <ul className={styles["cart-items"]}>
+          {items.map((item) => (
+            <CartItem
+              key={item.id}
+              {...item}
+              cartItemRemove={cartItemRemove.bind(null, item.id)}
+              cartItemAdd={cartItemAdd.bind(null, item)}
+            />
+          ))}
+        </ul>
+      )}
+    </>
+  );
 
-      <div className={styles.total}>
-        <span>Total amount</span>
-        <span>${totalAmount.toFixed(2)}</span>
-      </div>
+  const amounts = (
+    <>
+      {!isSubmitting && (
+        <div className={styles.total}>
+          <span>Total amount</span>
+          <span>${totalAmount.toFixed(2)}</span>
+        </div>
+      )}
+    </>
+  );
 
+  const formOrder = (
+    <>
       {isCheckOut && (
         <CheckOutForm
           handleUserConfirm={handleUserConfirm}
           onCancelOrder={props.hideCartHandler}
         />
       )}
+    </>
+  );
 
+  const cartModalContent = (
+    <>
+      {cartItems}
+      {amounts}
+      {formOrder}
       {!isCheckOut && (
         <div className={styles.actions}>
           <button
@@ -96,6 +119,30 @@ function Cart(props) {
           )}
         </div>
       )}
+    </>
+  );
+
+  const submittingModalContent = <p>Sending Order ...</p>;
+
+  const orderSuccessfull = (
+    <>
+      <p>Your order is successfully sent</p>
+      <div className={styles.actions}>
+        <button
+          className={styles["button"]}
+          onClick={props.hideCartHandler}
+        >
+          close
+        </button>
+      </div>
+    </>
+  );
+
+  return (
+    <Modal hideCartHandler={props.hideCartHandler}>
+      {!isSubmitting && !submitSuccess && cartModalContent}
+      {isSubmitting && submittingModalContent}
+      {!isSubmitting && submitSuccess && orderSuccessfull}
     </Modal>
   );
 }
