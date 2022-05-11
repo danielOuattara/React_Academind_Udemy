@@ -43,7 +43,6 @@ const cartReducer = (state, action) => {
     if (itemToReduce.amount === 1) {
       /* in this case we remove the item completely */
       updatedItems = updatedItems.filter((item) => item.id !== action.payload);
-
     } else {
       /* in this case we reduce the item number & the total price*/
       let updatedItem = {
@@ -59,6 +58,11 @@ const cartReducer = (state, action) => {
 
     return { items: updatedItems, totalAmount: updatedTotalAmount };
   }
+  if (action.type === "CLEAR") {
+    return defaultCartState;
+  }
+
+  return defaultCartState;
 };
 
 function CartProvider(props) {
@@ -71,11 +75,16 @@ function CartProvider(props) {
     dispatchCart({ type: "REMOVE", payload: id });
   };
 
+  const clearCartItems = () => {
+    dispatchCart({type: "CLEAR"})
+  }
+
   const cartContext = {
     items: cartState.items,
     totalAmount: cartState.totalAmount,
     addItem: addItemToCart,
     removeItem: removeItemFromCart,
+    clearCartItems
   };
   return (
     <CartContext.Provider value={cartContext}>

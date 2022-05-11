@@ -14,7 +14,7 @@ function Cart(props) {
   const [error, setError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
+  const { items, totalAmount, addItem, removeItem, clearCartItems } = useContext(CartContext);
 
   const cartItemAdd = (item) => {
     addItem({ ...item, amount: 1 });
@@ -48,6 +48,7 @@ function Cart(props) {
       console.log("data = ", data);
       if (data) {
         setSubmitSuccess(true);
+        clearCartItems()
       }
     } catch (error) {
       setError(error.message);
@@ -128,10 +129,7 @@ function Cart(props) {
     <>
       <p>Your order is successfully sent</p>
       <div className={styles.actions}>
-        <button
-          className={styles["button"]}
-          onClick={props.hideCartHandler}
-        >
+        <button className={styles["button"]} onClick={props.hideCartHandler}>
           close
         </button>
       </div>

@@ -1,0 +1,11 @@
+
+The project is interesting, but Maximilian made it very complicated 
+and hard to maintain
+
+So TODO: 
+
+- restart the project , make it simpler
+- reduce the number of components
+- use context to globally put props & method in the project wire
+- try to simplify fetch using dedicated general function
+- form validation need a simpler action
