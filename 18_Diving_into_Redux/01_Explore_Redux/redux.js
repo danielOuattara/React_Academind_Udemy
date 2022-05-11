@@ -4,9 +4,16 @@
 const redux = require("redux");
 
 const counterReducer = (state = { counter: 0 }, action) => {
-  return {
-    counter: state.counter + 1,
-  };
+  if (action.type === "ADD") {
+    return {
+      counter: state.counter + action.payload,
+    };
+  }
+  if (action.type === "SUBSTRACT") {
+    return {
+      counter: state.counter - action.payload,
+    };
+  }
 };
 
 const store = redux.createStore(counterReducer);
@@ -19,6 +26,15 @@ store.subscribe(counterSubscriber);
 
 store.dispatch({
   type: "ADD",
+  payload: 1,
+});
+store.dispatch({
+  type: "SUBSTRACT",
+  payload: 1,
+});
+store.dispatch({
+  type: "ADD",
+  payload: 1,
 });
 
 /* Example 2 
