@@ -46,13 +46,13 @@ const Counter = () => {
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
-    dispatch({ type: "INCREMENT" });
+    dispatch({ type: "INCREMENT", payload: +1 });
   };
   const incrementBy5Handler = () => {
     dispatch({ type: "INCREMENT", payload: +5 });
   };
   const decrementHandler = () => {
-    dispatch({ type: "DECREMENT" });
+    dispatch({ type: "DECREMENT", payload: -1 });
   };
   const toggleCounterHandler = () => {
     dispatch({ type: "INCREMENT" });
