@@ -4,10 +4,10 @@ import { cartActions } from "../../store/cart-slice";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-  const { title, quantity, total, price, id } = props;
+  const { title, quantity, subTotalPrice, price, id } = props;
 
   const handleUpdateQuantity = (id, value) => {
-    dispatch(cartActions.updateQuantity({ id, quantity: value }));
+    dispatch(cartActions.updateQuantity({ id, quantity: value, price }));
   };
 
   return (
@@ -15,7 +15,7 @@ const CartItem = (props) => {
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${total.toFixed(2)}{" "}
+          ${subTotalPrice.toFixed(2)}{" "}
           <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
         </div>
       </header>
