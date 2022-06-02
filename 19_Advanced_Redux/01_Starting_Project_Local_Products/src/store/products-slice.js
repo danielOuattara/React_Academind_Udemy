@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 //------------------------------------------------
+
 const initialProductState = {
   counter: 0,
   showCounter: true,
@@ -9,10 +10,10 @@ const initialProductState = {
 const productSlice = createSlice({
   name: "product",
   initialState: initialProductState,
-  reducers: {
-
-  },
+  reducers: {},
 });
 export const productActions = productSlice.actions;
 
 export default productSlice.reducer;
+
+// console.log("productSlice = ", productSlice)

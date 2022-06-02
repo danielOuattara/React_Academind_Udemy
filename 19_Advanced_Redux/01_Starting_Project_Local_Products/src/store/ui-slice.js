@@ -1,3 +1,5 @@
+/* created as Maximilian did, but not used: not matching my logic.*/
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const uiSlice = createSlice({
@@ -10,6 +12,6 @@ const uiSlice = createSlice({
   },
 });
 
-export const uiActions = uiSlice.actions
+export const uiActions = uiSlice.actions;
 
 export default uiSlice.reducer;
