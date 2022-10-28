@@ -1,13 +1,10 @@
-
-import './../../styles/card.css';
+import "./../UI/card.css";
 
 function Card(props) {
-    const classes = `card + ${props.className}`
-    return (
-        <div className={classes}>
-            {props.children} 
-        </div>
-    );
+  const classes = `card + ${props.className}`;
+  //   console.log("props = ", props);
+  //   console.log("props.className = ", props.className);
+  return <div className={classes}>{props.children}</div>;
 }
 
 export default Card;
