@@ -1,76 +1,66 @@
-import { useState } from 'react';
-import './../../styles/expenseForm.css';
+import { useState } from "react";
+import "./../../styles/expenseForm.css";
 
-function ExpenseForm({handleSendExpense}) {
+function ExpenseForm({ handleSendExpense }) {
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
 
-    const [ title, setTitle] = useState('');
-    const [ amount, setAmount] = useState('');
-    const [ date, setDate] = useState('');
+  const handleExpenseTitle = (event) => {
+    return setTitle(() => event.target.value);
+  };
 
-    const handleExpenseTitle = (event) => {
-        setTitle(() => {
-            return event.target.value
-        });
-    }
+  const handleExpenseAmount = (event) => {
+    return setAmount(() => event.target.value);
+  };
 
-    const handleExpenseAmount = (event) => {
-        setAmount(() => {
-            return event.target.value
-        });
-    }
+  const handleExpenseDate = (event) => {
+    return setDate(() => event.target.value);
+  };
 
-    const handleExpenseDate = (event) => {
-        setDate(() => {
-            return event.target.value
-        });
-    }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const expenseData = { title, amount: Number(amount), date: new Date(date) };
+    // console.log("expenseData =", expenseData);
+    handleSendExpense(expenseData);
+    setTitle("");
+    setAmount("");
+    setDate("");
+  };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const expenseData = { title, amount, date: new Date(date) };
-        handleSendExpense(expenseData);
-        setTitle('');
-        setAmount('');
-        setDate('');
-    }
-
-    return (
-        <form onSubmit={handleSubmit}>
-            <div className="new-expense__controls">
-                <div className="new-expense__control">
-                    <label htmlFor="title">Title</label>
-                    <input 
-                       type="text" 
-                       value={title} 
-                       onChange={handleExpenseTitle} 
-                    />
-                </div>
-                <div className="new-expense__control">
-                    <label htmlFor="amount">Amount</label>
-                    <input 
-                       type="number" 
-                       value={amount} 
-                       min="0.01" 
-                       step="0.01" 
-                       onChange={handleExpenseAmount} 
-                    />
-                </div>
-                <div className="new-expense__control">
-                    <label htmlFor="date">Date</label>
-                    <input 
-                       type="date" 
-                       value={date} 
-                       min="2019-01-01" 
-                       max="2022-12-31" 
-                       onChange={handleExpenseDate} 
-                    />
-                </div>
-            </div>
-            <div className="new-expense__actions">
-                <button type='submit'>Add Expense</button>
-            </div>
-        </form>
-        );
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className="new-expense__controls">
+        <div className="new-expense__control">
+          <label htmlFor="title">Title</label>
+          <input type="text" value={title} onChange={handleExpenseTitle} />
+        </div>
+        <div className="new-expense__control">
+          <label htmlFor="amount">Amount</label>
+          <input
+            type="number"
+            value={amount}
+            min="0.01"
+            step="0.01"
+            onChange={handleExpenseAmount}
+          />
+        </div>
+        <div className="new-expense__control">
+          <label htmlFor="date">Date</label>
+          <input
+            type="date"
+            value={date}
+            min="2019-01-01"
+            max="2022-12-31"
+            onChange={handleExpenseDate}
+          />
+        </div>
+      </div>
+      <div className="new-expense__actions">
+        <button type="submit">Add Expense</button>
+      </div>
+    </form>
+  );
 }
 
 export default ExpenseForm;
@@ -94,7 +84,7 @@ export default ExpenseForm;
 //             return {
 //                 ...prevState,
 //                 title: event.target.value
-//             }            
+//             }
 //         });
 //     }
 
@@ -106,7 +96,7 @@ export default ExpenseForm;
 //             }
 //         });
 //     }
-    
+
 //     const handleExpenseDate = (event) => {
 //         setUserInput((prevState) => { // good for Async from React itself
 //             return {
@@ -121,30 +111,30 @@ export default ExpenseForm;
 //             <div className="new-expense__controls">
 //                 <div className="new-expense__control">
 //                     <label htmlFor="title">Title</label>
-//                     <input 
-//                        type="text" 
-//                        value={userInput.title} 
-//                        onChange={handleExpenseTitle} 
+//                     <input
+//                        type="text"
+//                        value={userInput.title}
+//                        onChange={handleExpenseTitle}
 //                     />
 //                 </div>
 //                 <div className="new-expense__control">
 //                     <label htmlFor="amount">Amount</label>
-//                     <input 
-//                        type="number" 
-//                        value={userInput.amount} 
-//                        min="0.01" 
-//                        step="0.01" 
-//                        onChange={handleExpenseAmount} 
+//                     <input
+//                        type="number"
+//                        value={userInput.amount}
+//                        min="0.01"
+//                        step="0.01"
+//                        onChange={handleExpenseAmount}
 //                     />
 //                 </div>
 //                 <div className="new-expense__control">
 //                     <label htmlFor="date">Date</label>
-//                     <input 
-//                        type="date" 
-//                        value={userInput.date} 
-//                        min="2019-01-01" 
-//                        max="2022-12-31" 
-//                        onChange={handleExpenseDate} 
+//                     <input
+//                        type="date"
+//                        value={userInput.date}
+//                        min="2019-01-01"
+//                        max="2022-12-31"
+//                        onChange={handleExpenseDate}
 //                     />
 //                 </div>
 //             </div>
