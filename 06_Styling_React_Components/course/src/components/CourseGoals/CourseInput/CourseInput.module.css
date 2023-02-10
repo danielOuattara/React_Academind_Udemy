@@ -27,6 +27,7 @@
   border-color: red;
   background-color: lightSalmon;
 }
+
 .form-control.invalid-input label {
   color: red;
 }
