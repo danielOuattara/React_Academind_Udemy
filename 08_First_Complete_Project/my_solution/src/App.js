@@ -7,10 +7,8 @@ function App() {
   const [user, setUser] = useState({ username: "", age: "" });
   const [allUsers, setAllUsers] = useState([]);
   const [isError, setIsError] = useState(false);
-  // const [ ageError, setAgeError ] = useState(false);
 
   const handleChange = (event) => {
-    event.preventDefault();
     const name = event.target.name;
     const value = event.target.value;
     setUser((user) => {
@@ -29,8 +27,7 @@ function App() {
 
     const newUser = {
       id: new Date().getTime() * Math.floor(Math.random() * 100),
-      username: user.username,
-      age: user.age,
+      ...user,
     };
 
     setAllUsers((allUsers) => {
