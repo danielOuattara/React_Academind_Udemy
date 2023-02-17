@@ -4,8 +4,8 @@ import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
 
-const initialState = { value: "", isValid: false };
-const pswdInitialState = { value: "", isValid: false };
+const initialState = { value: "", isValid: undefined };
+const pswdInitialState = { value: "", isValid: undefined };
 
 //------------------------------------------------
 const emailReducer = (state, action) => {
@@ -37,7 +37,7 @@ const Login = (props) => {
   const [emailState, dispatchEmail] = useReducer(emailReducer, initialState);
   const [passwordState, dispatchPassword] = useReducer(
     passwordReducer,
-    pswdInitialState
+    pswdInitialState,
   );
 
   const { isValid: emailIsValid } = emailState;
