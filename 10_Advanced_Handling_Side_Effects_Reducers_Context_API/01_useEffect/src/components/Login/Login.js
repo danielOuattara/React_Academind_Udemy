@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
@@ -11,7 +10,7 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  /* useEffect runs for every component re-renders uncondtionnally*/
+  /* useEffect runs for every component re-renders unconditionally*/
 
   // useEffect(() => {
   //   console.log("EFFECT RUNNING");
@@ -32,7 +31,7 @@ const Login = (props) => {
 
   /* During the component 1st render, the cleanup up function runs 
      after the "first" function in the useEffect 
-     But then, the cleanup function runs beofre the "first
+     But then, the cleanup function runs before the "first
      function inside the useEffect*/
 
   useEffect(() => {
@@ -47,7 +46,7 @@ const Login = (props) => {
     let timer = setTimeout(() => {
       console.log("Checking form validity");
       setFormIsValid(
-        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6,
       );
     }, 1000);
 
