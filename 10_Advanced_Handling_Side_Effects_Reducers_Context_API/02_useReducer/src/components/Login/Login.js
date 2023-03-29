@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useReducer } from "react";
-
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
 
 const initialState = { value: "", isValid: undefined };
-const pswdInitialState = { value: "", isValid: undefined };
+const passwordInitialState = { value: "", isValid: undefined };
 
 //------------------------------------------------
 const emailReducer = (state, action) => {
@@ -32,12 +31,13 @@ const passwordReducer = (state, action) => {
 };
 
 //------------------------------------------------
-const Login = (props) => {
+
+export default function Login(props) {
   const [formIsValid, setFormIsValid] = useState(false);
   const [emailState, dispatchEmail] = useReducer(emailReducer, initialState);
   const [passwordState, dispatchPassword] = useReducer(
     passwordReducer,
-    pswdInitialState,
+    passwordInitialState,
   );
 
   const { isValid: emailIsValid } = emailState;
@@ -45,7 +45,7 @@ const Login = (props) => {
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      console.log("Checkin from validitiy");
+      console.log("Check-in from validity");
       setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
@@ -115,6 +115,4 @@ const Login = (props) => {
       </form>
     </Card>
   );
-};
-
-export default Login;
+}
