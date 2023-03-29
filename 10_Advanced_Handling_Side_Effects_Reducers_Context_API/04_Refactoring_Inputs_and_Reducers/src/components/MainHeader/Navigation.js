@@ -59,7 +59,6 @@ const Navigation = () => {
         )}
         {isLoggedIn && <li>{<button onClick={onLogout}>Logout</button>}</li>}
       </ul>
-      <p>Navigation</p>
     </nav>
   );
 };

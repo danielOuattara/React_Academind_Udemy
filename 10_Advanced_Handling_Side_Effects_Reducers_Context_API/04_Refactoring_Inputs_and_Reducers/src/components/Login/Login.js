@@ -16,11 +16,11 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [emailState, dispatchEmail] = useReducer(
     emailReducer,
-    emailInitialState
+    emailInitialState,
   );
   const [passwordState, dispatchPassword] = useReducer(
     passwordReducer,
-    passwordInitialState
+    passwordInitialState,
   );
 
   const { isValid: emailIsValid } = emailState;
@@ -28,7 +28,7 @@ const Login = (props) => {
 
   useEffect(() => {
     const identifier = setTimeout(() => {
-      console.log("Checkin from validitiy");
+      console.log("Checking from validity");
       setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
