@@ -7,12 +7,10 @@ import CartItem from "./CartItem";
 function Cart(props) {
   const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
 
-  const cartItemAdd = (item) => {
-    addItem({ ...item, amount: 1 });
-  };
-  const cartItemRemove = (id) => {
-    removeItem(id);
-  };
+  const cartItemAdd = (item) => addItem({ ...item, amount: 1 });
+
+  const cartItemRemove = (id) => removeItem(id);
+
   return (
     <Modal hideCartHandler={props.hideCartHandler}>
       <ul className={styles["cart-items"]}>

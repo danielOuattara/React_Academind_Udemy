@@ -7,9 +7,10 @@ const defaultCartState = {
 };
 
 const cartReducer = (state, action) => {
+  console.log("action = ", action);
   if (action.type === "ADD") {
     const existingItemInCart = state.items.find(
-      (item) => item.id === action.payload.id
+      (item) => item.id === action.payload.id,
     );
 
     let updatedItems = [...state.items];
@@ -43,7 +44,6 @@ const cartReducer = (state, action) => {
     if (itemToReduce.amount === 1) {
       /* in this case we remove the item completely */
       updatedItems = updatedItems.filter((item) => item.id !== action.payload);
-
     } else {
       /* in this case we reduce the item number & the total price*/
       let updatedItem = {

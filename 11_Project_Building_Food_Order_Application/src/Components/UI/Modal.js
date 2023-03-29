@@ -5,9 +5,7 @@ import styles from "./Modal.module.css";
 //-------------------------------------
 function Backdrop(props) {
   return (
-    <div className={styles.backdrop} onClick={props.hideCartHandler}>
-      Modal
-    </div>
+    <div className={styles.backdrop} onClick={props.hideCartHandler}></div>
   );
 }
 
@@ -43,11 +41,9 @@ function ModalOverlay(props) {
 
 // export default Modal;
 
-
 //----------------------------------------------------------------------
 /* One portal for 2 components 
 --------------------------------*/
-const portalDomTarget = document.getElementById("overlays");
 
 function Modal(props) {
   return (
@@ -57,7 +53,7 @@ function Modal(props) {
           <Backdrop hideCartHandler={props.hideCartHandler} />
           <ModalOverlay>{props.children}</ModalOverlay>
         </>,
-        portalDomTarget
+        document.getElementById("overlays"),
       )}
     </Fragment>
   );

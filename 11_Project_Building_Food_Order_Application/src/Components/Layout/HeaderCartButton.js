@@ -4,18 +4,20 @@ import styles from "./HeaderCartButton.module.css";
 import CartContext from "../../store/CartContext";
 
 function HeaderCartButton(props) {
-  const [btnHighligthed, setBtnHighlithed] = useState(false);
+  const [btnHighlighted, setBtnHighLighted] = useState(false);
+
   const { items } = useContext(CartContext);
-  const numberOfCartItems = items.reduce((currrentNumber, item) => {
-    return currrentNumber + item.amount;
+
+  const numberOfCartItems = items.reduce((currentNumber, item) => {
+    return currentNumber + item.amount;
   }, 0);
 
-  const btnStyles = `${styles.button} ${btnHighligthed ? styles.bump : ""}`;
+  const btnStyles = `${styles.button} ${btnHighlighted ? styles.bump : ""}`;
 
   useEffect(() => {
-    setBtnHighlithed(() => true);
+    setBtnHighLighted(true);
     const timer = setTimeout(() => {
-      setBtnHighlithed(false);
+      setBtnHighLighted(false);
     }, 200);
 
     return () => {
