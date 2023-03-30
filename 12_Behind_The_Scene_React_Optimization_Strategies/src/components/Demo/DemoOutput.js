@@ -1,4 +1,15 @@
 // import React from "react";
+
+// function DemoOutput(props) {
+//   console.log("DEMO OUTPUT RUNNING");
+//   return <p>{props.show ? "This is new" : ""}</p>;
+// }
+
+// export default DemoOutput;
+
+//----------------------------------------------------------------------
+
+// import React from "react";
 // import MyParagraph from "./MyParagraph";
 
 // function DemoOutput(props) {
@@ -7,7 +18,6 @@
 // }
 
 // export default DemoOutput;
-
 
 //------------------------------------------------------------------------
 
@@ -20,4 +30,4 @@ function DemoOutput(props) {
 }
 
 export default React.memo(DemoOutput);
-/* React.memo() for functionnal components only  */
+/* React.memo() for functional components only  */

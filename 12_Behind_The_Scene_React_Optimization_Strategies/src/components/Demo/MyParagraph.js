@@ -17,4 +17,4 @@ export default MyParagraph;
 // }
 
 // export default React.memo(MyParagraph);
-// /* React.memo() for functionnal components only  */
+// /* React.memo() for functional components only  */

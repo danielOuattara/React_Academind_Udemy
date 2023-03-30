@@ -1,43 +1,25 @@
-// import React, { useState} from 'react';
-
-// import './App.css';
-// import Button from './components/UI/Button/Button';
+// import React, { useState } from "react";
+// import "./App.css";
+// import Button from "./components/UI/Button/Button";
 
 // function App() {
 //   const [showParagraph, setShowParagraph] = useState(false);
-//   console.log("RENDER")
+//   console.log("RENDER");
 //   return (
 //     <div className="app">
 //       <h1>Hi there!</h1>
-//       <Button onClick={() => setShowParagraph(!showParagraph)}>Toggle Paragraph</Button>
-//       { showParagraph && <p>This is a paragraph</p>}
+//       <Button
+//         onClick={() => setShowParagraph((showParagraph) => !showParagraph)}
+//       >
+//         Toggle Paragraph
+//       </Button>
+//       {showParagraph && <p>This is a paragraph</p>}
 //     </div>
 //   );
 // }
 
 // export default App;
 
-//-------------------------------------------------------------------
-
-// import React, { useState} from 'react';
-
-// import './App.css';
-// import DemoOutput from './components/Demo/DemoOutput';
-// import Button from './components/UI/Button/Button';
-
-// function App() {
-//   const [showParagraph, setShowParagraph] = useState(false);
-//     console.log("APP RUNNING");
-//   return (
-//     <div className="app">
-//       <h1>Hi there!</h1>
-//       <Button onClick={() => setShowParagraph(!showParagraph)}>Toggle Paragraph</Button>
-//       <DemoOutput show={showParagraph} />
-//     </div>
-//   );
-// }
-
-// export default App;
 //-------------------------------------------------------------------
 
 // import React, { useState } from "react";
@@ -49,16 +31,39 @@
 // function App() {
 //   const [showParagraph, setShowParagraph] = useState(false);
 //   console.log("APP RUNNING");
+//   return (
+//     <div className="app">
+//       <h1>Hi there!</h1>
+//       <Button onClick={() => setShowParagraph(!showParagraph)}>
+//         Toggle Paragraph
+//       </Button>
+//       <DemoOutput show={showParagraph} />
+//     </div>
+//   );
+// }
 
-//   /* Every time App is re-eveualted it's recreates all functions
+// export default App;
+// //-------------------------------------------------------------------
+
+// import React, { useState } from "react";
+
+// import "./App.css";
+// import DemoOutput from "./components/Demo/DemoOutput";
+// import Button from "./components/UI/Button/Button";
+
+// function App() {
+//   const [showParagraph, setShowParagraph] = useState(false);
+//   console.log("APP RUNNING");
+
+//   /* Every time App is re-evaluated it's recreates all functions
 //      and re-evaluate them: see section below for useCallback */
 
 //   // const toggleShowParagraph = () => {
-//   //   setShowParagraph((previousSate) => !previousSate);
+//   //   setShowParagraph((showParagraph) => !showParagraph);
 //   // };
 
 //   function toggleShowParagraph() {
-//     setShowParagraph((previousSate) => !previousSate);
+//     setShowParagraph((showParagraph) => !showParagraph);
 //   }
 
 //   return (
@@ -85,8 +90,8 @@
 //   const [showParagraph, setShowParagraph] = useState(false);
 //   console.log("APP RUNNING");
 
-//   /* useCallback save a copy a function and makes that function recreated
-//      on every re-evaluation */
+//   /* useCallback save a copy a function and makes that
+//      function not being recreated on every re-evaluation */
 
 //   // const toggleShowParagraph = useCallback (() => {
 //   //   setShowParagraph((previousSate) => !previousSate);
@@ -110,47 +115,74 @@
 // export default App;
 // -------------------------------------------------------------------
 
-import React, { useState, useCallback } from "react";
+// import React, { useState, useCallback } from "react";
 
+// import "./App.css";
+// import DemoOutput from "./components/Demo/DemoOutput";
+// import Button from "./components/UI/Button/Button";
+
+// function App() {
+//   const [showParagraph, setShowParagraph] = useState(false);
+//   const [allowToggle, setAllowToggle] = useState(false);
+
+//   console.log("APP RUNNING");
+
+//   /* useCallback save a copy a function and makes that function
+//      not being recreated on every re-evaluation */
+
+//   // const toggleShowParagraph = useCallback (() => {
+//   //   setShowParagraph((previousSate) => !previousSate);
+//   // }, []);
+
+//   const toggleShowParagraph = useCallback(
+//     function () {
+//       if (allowToggle) {
+//         setShowParagraph((previousSate) => !previousSate);
+//       }
+//     },
+//     [allowToggle],
+//   );
+
+//   const allowToggleHandler = () => {
+//     setAllowToggle(true);
+//   };
+
+//   return (
+//     <div className="app">
+//       <h1>Hi there!</h1>
+//       <Button onClick={allowToggleHandler}>Allow Toggling</Button>
+//       <Button onClick={toggleShowParagraph}>Toggle Paragraph</Button>
+//       <DemoOutput show={showParagraph} />
+//     </div>
+//   );
+//   /* It is enough for a function in a child component to be re-evaluate if the
+//      the parent component is re-evaluated  */
+// }
+
+// export default App;
+
+//-------------------------------------------------------------------
+//
+import React, { useState, useCallback, useMemo } from "react";
 import "./App.css";
-import DemoOutput from "./components/Demo/DemoOutput";
+import DemoList from "./components/Demo/DemoList";
 import Button from "./components/UI/Button/Button";
 
 function App() {
-  const [showParagraph, setShowParagraph] = useState(false);
-  const [allowToogle, setAllowToogle] = useState(false);
+  const [listTitle, setListTitle] = useState("My List");
 
-  console.log("APP RUNNING");
+  const changeTitleHandler = useCallback(() => {
+    setListTitle("New Title");
+  }, []);
 
-  /* useCallback save a copy a function and makes that function recreated
-     on every re-evaluation */
-
-  // const toggleShowParagraph = useCallback (() => {
-  //   setShowParagraph((previousSate) => !previousSate);
-  // }, []);
-
-  const toggleShowParagraph = useCallback(function () {
-    if (allowToogle) {
-      setShowParagraph((previousSate) => !previousSate);
-    }
-  }, [allowToogle]);
-
-  const allowToggleHandler = () => {
-    setAllowToogle(true);
-  };
+  const listItems = useMemo(() => [5, 3, 1, 10, 9], []);
 
   return (
     <div className="app">
-      <h1>Hi there!</h1>
-      <Button onClick={allowToggleHandler}>Allow Toggling</Button>
-      <Button onClick={toggleShowParagraph}>Toggle Paragraph</Button>
-      <DemoOutput show={showParagraph} />
+      <DemoList title={listTitle} items={listItems} />
+      <Button onClick={changeTitleHandler}>Change List Title</Button>
     </div>
   );
-  /* It is enough for a function in a child component to be re-evaluate if the
-     the parent component is re-evaluated  */
 }
 
 export default App;
-
-//-------------------------------------------------------------------

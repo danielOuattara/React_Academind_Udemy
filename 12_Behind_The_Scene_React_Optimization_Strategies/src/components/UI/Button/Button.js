@@ -39,6 +39,6 @@ const Button = (props) => {
 export default React.memo(Button);
 
 /* 
-React.memo does not work on Buttonfunction; 
+React.memo does not work on Button function; 
 must add useCallback + React.memo
-CAUTION: React.memo + useCallback, */ 
+CAUTION: React.memo + useCallback, */
