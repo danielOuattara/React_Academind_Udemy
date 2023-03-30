@@ -11,16 +11,14 @@ export class Users extends Component {
   }
 
   // try/catch cans be used to handle error in the same code.
-  // But how to catch an error in this component and send it 
+  // But how to catch an error in this component and send it
   // to another parent for error handling ?
-  // Solution: create an ErrorBoundary component 
-  
-  
-  componentDidUpdate() {
-    if(this.props.users.length === 0 ) {
-      throw new Error('No users provided !')
-    }
+  // Solution: create an ErrorBoundary component
 
+  componentDidUpdate() {
+    if (this.props.users.length === 0) {
+      throw new Error("No users provided !");
+    }
   }
 
   toggleUsersHandler = () => {

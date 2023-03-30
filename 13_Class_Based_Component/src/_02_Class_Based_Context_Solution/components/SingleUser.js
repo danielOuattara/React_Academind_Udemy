@@ -1,5 +1,3 @@
-
-
 import { Component } from "react";
 import classes from "./User.module.css";
 

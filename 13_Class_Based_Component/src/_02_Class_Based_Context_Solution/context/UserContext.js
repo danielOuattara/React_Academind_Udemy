@@ -1,7 +1,6 @@
-import { Component, Fragment } from "react";
-import Users from "./Users";
-import classes from "./UserFinder.module.css";
-import ErrorBoundary from "./ErrorBoundary";
+import { Component, createContext } from "react";
+
+export const UserContext = createContext();
 
 const DUMMY_USERS = [
   { id: "u1", name: "Max" },
@@ -9,7 +8,7 @@ const DUMMY_USERS = [
   { id: "u3", name: "Julie" },
 ];
 
-export class UserFInder extends Component {
+export class UserContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +16,6 @@ export class UserFInder extends Component {
       searchTerm: "",
     };
   }
-
   searchChangeHandler = (event) => {
     this.setState({ searchTerm: event.target.value });
   };
@@ -26,7 +24,7 @@ export class UserFInder extends Component {
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.setState({
         filteredUsers: DUMMY_USERS.filter((user) =>
-          user.name.includes(this.state.searchTerm)
+          user.name.includes(this.state.searchTerm),
         ),
       });
     }
@@ -34,16 +32,16 @@ export class UserFInder extends Component {
 
   render() {
     return (
-      <Fragment>
-        <dir className={classes.finder}>
-          <input type="search" onChange={this.searchChangeHandler} />
-        </dir>
-        <ErrorBoundary>
-          <Users users={this.state.filteredUsers} />
-        </ErrorBoundary>
-      </Fragment>
+      <UserContext.Provider
+        value={{
+          filteredUsers: [...this.state.filteredUsers],
+          searchChangeHandler: this.searchChangeHandler,
+        }}
+      >
+        {this.props.children}
+      </UserContext.Provider>
     );
   }
 }
 
-export default UserFInder;
+export default UserContextProvider;
