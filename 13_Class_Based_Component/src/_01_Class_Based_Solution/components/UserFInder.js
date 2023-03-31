@@ -14,7 +14,7 @@
 
 //   useEffect(() => {
 //     setFilteredUsers(
-//       DUMMY_USERS.filter((user) => user.name.includes(searchTerm))
+//       DUMMY_USERS.filter((user) => user.name.includes(searchTerm)),
 //     );
 //   }, [searchTerm]);
 
@@ -26,6 +26,10 @@
 //     <Fragment>
 //       <dir className={classes.finder}>
 //         <input type="search" onChange={searchChangeHandler} />
+//         {/* <input   // OK !
+//           type="search"
+//           onChange={(event) => setSearchTerm(event.target.value)}
+//         /> */}
 //       </dir>
 //       <Users users={filteredUsers} />
 //     </Fragment>
@@ -50,7 +54,7 @@ export class UserFInder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: "",
     };
   }
@@ -59,11 +63,19 @@ export class UserFInder extends Component {
     this.setState({ searchTerm: event.target.value });
   };
 
+  componentDidMount() {
+    // simulating API call on loading
+    this.setState((prevState) => ({
+      ...prevState,
+      filteredUsers: DUMMY_USERS,
+    }));
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchTerm !== this.state.searchTerm) {
       this.setState({
         filteredUsers: DUMMY_USERS.filter((user) =>
-          user.name.includes(this.state.searchTerm)
+          user.name.includes(this.state.searchTerm),
         ),
       });
     }
@@ -72,9 +84,9 @@ export class UserFInder extends Component {
   render() {
     return (
       <Fragment>
-        <dir className={classes.finder}>
+        <div className={classes.finder}>
           <input type="search" onChange={this.searchChangeHandler} />
-        </dir>
+        </div>
         <Users users={this.state.filteredUsers} />
       </Fragment>
     );
