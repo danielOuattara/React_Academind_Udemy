@@ -1,0 +1,9 @@
+.isLoading {
+  background-color: #230052;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 12px;
+  text-align: center;
+  color: white;
+  padding: 20px;
+}
