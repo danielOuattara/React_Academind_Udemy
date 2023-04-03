@@ -3,6 +3,9 @@ import "./App.css";
 import MoviesList from "./components/MoviesList";
 import AddMovie from "./components/AddMovie";
 
+const url =
+  "https://react-http-academind-a983a-default-rtdb.europe-west1.firebasedatabase.app/movies.json";
+
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,9 +38,6 @@ function App() {
   // useEffect(() => {
   //   fetchMoviesHandler();
   // }, [fetchMoviesHandler]);
-
-  const url =
-    "https://react-http-academind-a983a-default-rtdb.europe-west1.firebasedatabase.app/movies.json";
 
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
@@ -74,7 +74,7 @@ function App() {
   //------------------------------------------------------------------------------
 
   async function addMovieHandler(movie) {
-    const response = await fetch(url, {
+    await fetch(url, {
       method: "POST",
       body: JSON.stringify(movie),
       headers: { "Content-Type": "application/json" },
