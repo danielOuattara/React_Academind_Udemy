@@ -1,11 +1,15 @@
-import useInput from "../hooks/useInput";
+import useInput from "./../hooks/useInput";
 
+const validateNameItem = (nameItem) => {
+  return nameItem.trim() !== "";
+};
 
-const BasicForm = (props) => {
-  const validateFirstName = (firstName) => {
-    return firstName.trim() !== "";
-  };
+const validateEmail = (email) => {
+  const regex = /\S+@\S+\.\S+/;
+  return regex.test(email.trim());
+};
 
+export default function BasicForm(props) {
   const {
     inputValue: enteredFirstName,
     setInputValue: setEnteredFirstName,
@@ -14,11 +18,7 @@ const BasicForm = (props) => {
     inputHasError: inputFirstNameHasError,
     inputChangeHandler: firstNameChangeHandler,
     inputFieldBlurHandler: firstNameInputBlurHandler,
-  } = useInput(validateFirstName);
-
-  const validateLastName = (lastName) => {
-    return lastName.trim() !== "";
-  };
+  } = useInput(validateNameItem);
 
   const {
     inputValue: enteredLastName,
@@ -28,12 +28,7 @@ const BasicForm = (props) => {
     inputHasError: inputLastNameHasError,
     inputChangeHandler: lastNameChangeHandler,
     inputFieldBlurHandler: lastNameInputBlurHandler,
-  } = useInput(validateLastName);
-
-  const validateEmail = (email) => {
-    const regex = /\S+@\S+\.\S+/;
-    return regex.test(email.trim());
-  };
+  } = useInput(validateNameItem);
 
   const {
     inputValue: enteredEmail,
@@ -48,8 +43,8 @@ const BasicForm = (props) => {
   let formIsValid = false;
 
   if (
-    !inputFirstNameHasError ||
-    !inputLastNameHasError ||
+    !inputFirstNameHasError &&
+    !inputLastNameHasError &&
     !inputEmailHasError
   ) {
     formIsValid = true;
@@ -57,9 +52,10 @@ const BasicForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (inputFirstNameHasError) {
+    if (!formIsValid) {
       return 0;
     }
+    console.log(enteredFirstName, enteredLastName, enteredEmail);
     setEnteredFirstName("");
     setEnteredLastName("");
     setEnteredEmail("");
@@ -138,6 +134,4 @@ const BasicForm = (props) => {
       </div>
     </form>
   );
-};
-
-export default BasicForm;
+}
