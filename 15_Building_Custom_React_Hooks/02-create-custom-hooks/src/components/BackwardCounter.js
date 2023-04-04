@@ -1,7 +1,5 @@
 import useCounter from "../hooks/useCounter";
 
-const BackwardCounter = () => {
+export default function BackwardCounter() {
   return useCounter(-1);
-};
-
-export default BackwardCounter;
+}

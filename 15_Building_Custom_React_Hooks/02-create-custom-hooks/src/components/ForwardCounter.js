@@ -1,7 +1,5 @@
 import useCounter from "../hooks/useCounter";
 
-const ForwardCounter = () => {
-  return useCounter(1);
-};
-
-export default ForwardCounter;
+export default function ForwardCounter() {
+  return useCounter(-1);
+}
