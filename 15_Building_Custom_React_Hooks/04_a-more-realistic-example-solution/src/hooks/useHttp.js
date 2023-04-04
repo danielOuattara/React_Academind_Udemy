@@ -1,6 +1,5 @@
-
 //--------------------------------------------------------
-/* N°1 */
+// /* N°1 */
 
 // import { useState, useCallback } from "react";
 
@@ -23,7 +22,7 @@
 
 //       const data = await response.json();
 //       applyData(data);
-
+//       //
 //     } catch (err) {
 //       setError(err.message || "Something went wrong!");
 //     }
@@ -38,8 +37,8 @@
 //=====================================================================================
 /* N°2 */
 
-/* Try not to use React.memo to garanty that url wont change on re-render, causing
-the app to re-render itself infinitly: so moving the requestConfig object in sendRequest()
+/* Try not to use React.memo to guaranty that url wont change on re-render, causing
+the app to re-render itself infinitely: so moving the requestConfig object in sendRequest()
 
 So below are the modifications needed to achieve this
 */
@@ -50,27 +49,31 @@ So below are the modifications needed to achieve this
 //   const [isLoading, setIsLoading] = useState(false);
 //   const [error, setError] = useState(null);
 
-     // "requestConfig" is now a param of sendRequest() which is ender useCallback, 
-     // so no more a possible dependency for useCallback
-//   const sendRequest = useCallback(async(requestConfig) => {
-//     try {
-//       setIsLoading(true);
-//       const response = await fetch(requestConfig.url, {
-//         method: requestConfig.method ? requestConfig.method : "GET",
-//         headers: requestConfig.headers ? requestConfig.headers : {},
-//         body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
-//       });
+//   // "requestConfig" is now a param of sendRequest() which is ender useCallback,
+//   // so no more a possible dependency for useCallback
 
-//       if (!response.ok) {
-//         throw new Error("Request failed!");
+//   const sendRequest = useCallback(
+//     async (requestConfig) => {
+//       try {
+//         setIsLoading(true);
+//         const response = await fetch(requestConfig.url, {
+//           method: requestConfig.method ? requestConfig.method : "GET",
+//           headers: requestConfig.headers ? requestConfig.headers : {},
+//           body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
+//         });
+
+//         if (!response.ok) {
+//           throw new Error("Request failed!");
+//         }
+//         const data = await response.json();
+//         applyData(data);
+//       } catch (err) {
+//         setError(err.message || "Something went wrong!");
 //       }
-//       const data = await response.json();
-//       applyData(data);
-//     } catch (err) {
-//       setError(err.message || "Something went wrong!");
-//     }
-//     setIsLoading(false);
-//   }, [ applyData]);  // Only applyData is called here as dependency for useCallback
+//       setIsLoading(false);
+//     },
+//     [applyData],
+//   ); // Only applyData is called here as dependency for useCallback
 
 //   return { isLoading, error, sendRequest };
 // }

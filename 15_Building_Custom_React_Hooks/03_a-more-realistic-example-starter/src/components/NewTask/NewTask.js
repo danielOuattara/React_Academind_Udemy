@@ -2,7 +2,7 @@ import { useState } from "react";
 import Section from "../UI/Section";
 import TaskForm from "./TaskForm";
 
-const NewTask = (props) => {
+export default function NewTask(props) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -20,7 +20,7 @@ const NewTask = (props) => {
       if (!response.ok) {
         throw new Error("Request failed!");
       }
-      const data = await response.json();      
+      const data = await response.json();
       const generatedId = data.name; // firebase-specific => "name" contains generated id
       const createdTask = { id: generatedId, text: taskText };
       props.onAddTask(createdTask);
@@ -38,6 +38,4 @@ const NewTask = (props) => {
       {error && <p>{error}</p>}
     </Section>
   );
-};
-
-export default NewTask;
+}

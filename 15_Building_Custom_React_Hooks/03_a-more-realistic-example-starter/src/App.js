@@ -5,15 +5,14 @@ import NewTask from "./components/NewTask/NewTask";
 const url =
   "https://react-hooks-academind-7a700-default-rtdb.europe-west1.firebasedatabase.app/tasks.json";
 
-function App() {
-  const [isLoading, setIsLoading] = useState(false);
+export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [tasks, setTasks] = useState([]);
 
   console.log("tasks before update =  ", tasks);
 
   const fetchTasks = async (taskText) => {
-    setIsLoading(true);
     setError(null);
     try {
       const response = await fetch(url);
@@ -52,5 +51,3 @@ function App() {
     </React.Fragment>
   );
 }
-
-export default App;

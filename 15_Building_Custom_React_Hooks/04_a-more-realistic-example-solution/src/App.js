@@ -11,28 +11,27 @@
 // function App() {
 //   const [tasks, setTasks] = useState([]);
 
-//   const tasksTranformer = useCallback(
-//     (data) => {
-//       const loadedTasks = [];
-//       for (const taskKey in data) {
-//         loadedTasks.push({ id: taskKey, text: data[taskKey].text });
-//       }
-//       setTasks(loadedTasks);
-//     },
-//     []
-//   );
+//   const tasksTransformer = useCallback((data) => {
+//     const loadedTasks = [];
+//     for (const taskKey in data) {
+//       loadedTasks.push({ id: taskKey, text: data[taskKey].text });
+//     }
+//     setTasks(loadedTasks);
+//   }, []);
 
 //   const {
 //     isLoading,
 //     error,
 //     sendRequest: fetchTasks,
-//   } = useHttp({ url }, tasksTranformer);
+//   } = useHttp({ url }, tasksTransformer);
 
 //   useEffect(
 //     () => {
 //       fetchTasks();
 //     },
-//     [fetchTasks ]  // DO NOT SET fetchTasks as a dependency, infinite loop requests
+//     [
+//       /* fetchTasks */
+//     ], // DO NOT SET fetchTasks as a dependency, infinite loop requests
 //   );
 
 //   const taskAddHandler = (task) => {
@@ -58,8 +57,8 @@
 
 /* N°2 */
 
-/* Try not to use React.memo to garanty that url wont change on re-render, causing
-the app to re-render itself infinitly */
+/* Try not to use React.memo to guaranty that url wont change on re-render, causing
+the app to re-render itself infinitely */
 
 // import React, { useEffect, useState, useCallback } from "react";
 // import Tasks from "./components/Tasks/Tasks";
@@ -72,7 +71,7 @@ the app to re-render itself infinitly */
 // function App() {
 //   const [tasks, setTasks] = useState([]);
 
-//   const tasksTranformer = useCallback((data) => {
+//   const tasksTransformer = useCallback((data) => {
 //     const loadedTasks = [];
 //     for (const taskKey in data) {
 //       loadedTasks.push({ id: taskKey, text: data[taskKey].text });
@@ -84,10 +83,10 @@ the app to re-render itself infinitly */
 //     isLoading,
 //     error,
 //     sendRequest: fetchTasks,
-//   } = useHttp(tasksTranformer);
+//   } = useHttp(tasksTransformer);
 
 //   useEffect(() => {
-//     fetchTasks({url});
+//     fetchTasks({ url });
 //   }, [fetchTasks]);
 
 //   const taskAddHandler = (task) => {
@@ -127,9 +126,10 @@ function App() {
   const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
   useEffect(() => {
-    // Here "transform" task is defined inside the useEffect, 
-    // thus, avoidin useCallback & dependencies call
-    const tasksTranformer = (data) => {
+    // Here "transform" task is defined inside the useEffect,
+    // thus, avoiding useCallback & dependencies call
+
+    const tasksTransformer = (data) => {
       const loadedTasks = [];
       for (const taskKey in data) {
         loadedTasks.push({ id: taskKey, text: data[taskKey].text });
@@ -137,7 +137,7 @@ function App() {
       setTasks(loadedTasks);
     };
 
-    fetchTasks({ url }, tasksTranformer);
+    fetchTasks({ url }, tasksTransformer);
   }, [fetchTasks]);
 
   const taskAddHandler = (task) => {
