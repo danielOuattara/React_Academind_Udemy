@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 
 const SimpleInput = (props) => {
@@ -19,8 +18,7 @@ const SimpleInput = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    setInputTouched(true)
+    setInputTouched(true);
 
     if (enteredName.trim() === "") {
       return setInputIsValid(false);
@@ -35,7 +33,11 @@ const SimpleInput = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={`form-control " ${!inputIsValid && inputTouched ? "invalid":""}`}>
+      <div
+        className={`form-control " ${
+          !inputIsValid && inputTouched ? "invalid" : ""
+        }`}
+      >
         <label htmlFor="name">Your Name</label>
         <input
           type="text"
@@ -45,7 +47,9 @@ const SimpleInput = (props) => {
           onChange={nameChangeHandler}
           value={enteredName}
         />
-        {!inputIsValid && inputTouched && <p className="error-text">Invalid Input for name</p>}
+        {!inputIsValid && inputTouched && (
+          <p className="error-text">Invalid Input for name</p>
+        )}
       </div>
       <div className="form-actions">
         <button>Submit</button>
