@@ -71,9 +71,7 @@ import { useState /* , useEffect */ } from "react";
 
 const SimpleInput = (props) => {
   const [enteredName, setEnteredName] = useState(""); // method 1
-  // const [inputIsValid, setInputIsValid] = useState(false);
   const [inputTouched, setInputTouched] = useState(false);
-  // const [formIsValid, setFormIsValid] = useState(false);
 
   const inputIsValid = enteredName.trim() !== "";
   let formIsValid = false;
@@ -82,19 +80,11 @@ const SimpleInput = (props) => {
     formIsValid = true;
   }
 
-  // useEffect(() => {
-  //   if (inputIsValid) {
-  //     setFormIsValid(true);
-  //   } else {
-  //     setFormIsValid(false);
-  //   }
-  // }, [inputIsValid]);
-
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
   };
 
-  const inputBlurHandler = (event) => {
+  const inputBlurHandler = () => {
     setInputTouched(true);
   };
 
