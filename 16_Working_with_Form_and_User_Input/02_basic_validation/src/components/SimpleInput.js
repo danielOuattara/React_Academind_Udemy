@@ -25,7 +25,7 @@ const SimpleInput = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className={`form-control " ${inputIsValid ? " " : " invalid"}`}>
+      <div className={`form-control ${inputIsValid ? " " : " invalid"}`}>
         <label htmlFor="name">Your Name</label>
         <input
           type="text"
