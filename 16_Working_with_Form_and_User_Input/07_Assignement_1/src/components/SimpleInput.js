@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const SimpleInput = (props) => {
+export default function SimpleInput(props) {
   const [enteredName, setEnteredName] = useState("");
   const [nameInputTouched, setNameInputTouched] = useState(false);
 
@@ -18,6 +18,7 @@ const SimpleInput = (props) => {
     formIsValid = true;
   }
 
+  // name
   const nameChangeHandler = (event) => {
     setEnteredName(event.target.value);
   };
@@ -26,6 +27,7 @@ const SimpleInput = (props) => {
     setNameInputTouched(true);
   };
 
+  // email
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
   };
@@ -93,7 +95,4 @@ const SimpleInput = (props) => {
       </div>
     </form>
   );
-};
-
-export default SimpleInput;
-
+}
