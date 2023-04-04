@@ -99,12 +99,10 @@
 
 //=======================================================================
 
-import useInput from "../hooks/UseInput";
+import useInput from "../hooks/useInput";
 
-const SimpleInput = (props) => {
-  const validateName = (name) => {
-    return name.trim() !== "";
-  };
+export default function SimpleInput(props) {
+  const validateName = (name) => name.trim() !== "";
 
   const {
     inputValue: enteredName,
@@ -196,6 +194,4 @@ const SimpleInput = (props) => {
       </div>
     </form>
   );
-};
-
-export default SimpleInput;
+}
