@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Card from "../UI/Card";
 import styles from "./AvailableMeals.module.css";
-import MealItem from "./Mealltem/MealItem";
+import MealItem from "./MealItem/MealItem";
 // import useHttp from "../../hooks/useHttp";
 
 const url =
   "https://food-app-academind-udemy-default-rtdb.europe-west1.firebasedatabase.app/meals.json";
 
-function AvailableMeals() {
+export default function AvailableMeals() {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -18,9 +18,7 @@ function AvailableMeals() {
   useEffect(() => {
     const fetchMeals = async () => {
       try {
-        setIsLoading(true);
         const response = await fetch(url);
-        console.log("response =", response);
         if (!response.ok) {
           setIsLoading(false);
           throw new Error(`${response.statusText} ${response.status} `);
@@ -29,11 +27,11 @@ function AvailableMeals() {
         if (!data) {
           throw new Error(
             ` Request status returned ${response.status} ${response.statusText} but nothing returned from fetch.\n
-            Please check your <url>`
+            Please check your <url>`,
           );
         }
 
-        let loadedMeals = [];
+        const loadedMeals = [];
 
         for (let key in data) {
           loadedMeals.push({
@@ -84,15 +82,13 @@ function AvailableMeals() {
   );
 }
 
-export default AvailableMeals;
-
 /* using a  general, multipurpose custom hook for fetching data 
   ---------------------------------------------------------------*/
 
 // const { isLoading, error, sendRequest: fetchMeals } = useHttp();
 
 // useEffect(() => {
-//   const tasksTranformer = (data) => {
+//   const tasksTransformer = (data) => {
 //     const loadedMeals = [];
 //     for (const taskKey in data) {
 //       loadedMeals.push({
@@ -105,5 +101,5 @@ export default AvailableMeals;
 //     setMeals(loadedMeals);
 //   };
 
-//   fetchMeals({ url }, tasksTranformer);
+//   fetchMeals({ url }, tasksTransformer);
 // }, [fetchMeals]);

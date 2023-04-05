@@ -20,7 +20,7 @@ function CheckOutForm(props) {
     email: true,
   });
 
-  // 1: create ref
+  // 1: create refs
   const nameInputRef = useRef();
   const streetInputRef = useRef();
   const postalInputRef = useRef();
@@ -81,7 +81,7 @@ function CheckOutForm(props) {
       postal: enteredPostal,
       phone: enteredPhone,
       email: enteredEmail,
-    })
+    });
   };
 
   return (
@@ -153,10 +153,15 @@ function CheckOutForm(props) {
       </div>
 
       <div className={styles.actions}>
+        <button type="button" onClick={props.closeCheckOutForm}>
+          close form
+        </button>
         <button type="button" onClick={props.onCancelOrder}>
           Cancel
         </button>
-        <button className={styles.submit}>Confirm</button>
+        <button className={styles.submit} type="submit">
+          Confirm
+        </button>
       </div>
     </form>
   );

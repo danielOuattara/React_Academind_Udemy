@@ -14,7 +14,8 @@ function Cart(props) {
   const [error, setError] = useState("");
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const { items, totalAmount, addItem, removeItem, clearCartItems } = useContext(CartContext);
+  const { items, totalAmount, addItem, removeItem, clearCartItems } =
+    useContext(CartContext);
 
   const cartItemAdd = (item) => {
     addItem({ ...item, amount: 1 });
@@ -45,13 +46,12 @@ function Cart(props) {
       }
 
       const data = await response.json();
-      console.log("data = ", data);
       if (data) {
         setSubmitSuccess(true);
-        clearCartItems()
+        clearCartItems();
       }
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      setError(err.message);
       console.log(error);
     } finally {
       setIsSubmitting(false);
@@ -92,6 +92,7 @@ function Cart(props) {
         <CheckOutForm
           handleUserConfirm={handleUserConfirm}
           onCancelOrder={props.hideCartHandler}
+          closeCheckOutForm={() => setIsCheckOut(false)}
         />
       )}
     </>
@@ -125,7 +126,7 @@ function Cart(props) {
 
   const submittingModalContent = <p>Sending Order ...</p>;
 
-  const orderSuccessfull = (
+  const orderSuccessful = (
     <>
       <p>Your order is successfully sent</p>
       <div className={styles.actions}>
@@ -140,7 +141,7 @@ function Cart(props) {
     <Modal hideCartHandler={props.hideCartHandler}>
       {!isSubmitting && !submitSuccess && cartModalContent}
       {isSubmitting && submittingModalContent}
-      {!isSubmitting && submitSuccess && orderSuccessfull}
+      {!isSubmitting && submitSuccess && orderSuccessful}
     </Modal>
   );
 }
