@@ -32,11 +32,13 @@
 
 // export default createStore(counterReducer);
 
+//======================================================================================
+
 /* Redux store using Toolkit 
 ----------------------------*/
 
-import { createSlice, configureStore } from "@reduxjs/toolkit";
 // import { createStore, combineReducers } from "redux";
+import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
   counter: 0,
@@ -77,14 +79,13 @@ const counterSlice = createSlice({
   },
 });
 
-export const counterActions = counterSlice.actions;
-
-// const store = createStore(counterSlice.reducer); // createStore not recommanded
+// const store = createStore(counterSlice.reducer); // createStore not recommended
 
 const store = configureStore({
-  // reducer: { counter: counterSlice.reducer },  // for large application
+  // reducer: { counter: counterSlice.reducer },  // for larger application
   reducer: counterSlice.reducer,
 });
 
+export const counterActions = counterSlice.actions;
 export default store;
 //------------------------------------------------------------
