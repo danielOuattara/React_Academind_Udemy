@@ -1,8 +1,8 @@
-import classes from "./Auth.module.css";
+import styles from "./Auth.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "./../store";
 
-const Auth = () => {
+export default function Auth() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -14,18 +14,18 @@ const Auth = () => {
   return (
     <>
       {!isAuthenticated && (
-        <main className={classes.auth}>
+        <main className={styles.auth}>
           <section>
             <form onSubmit={handleLogin}>
-              <div className={classes.control}>
+              <div className={styles.control}>
                 <label htmlFor="email">Email</label>
                 <input type="email" id="email" />
               </div>
-              <div className={classes.control}>
+              <div className={styles.control}>
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" />
               </div>
-              {/* <button onClick={handleLogin}>Login</button> */}
+              {/* <button type="button" onClick={handleLogin}>Login</button> */}
               <button type="submit">Login</button>
             </form>
           </section>
@@ -33,6 +33,4 @@ const Auth = () => {
       )}
     </>
   );
-};
-
-export default Auth;
+}

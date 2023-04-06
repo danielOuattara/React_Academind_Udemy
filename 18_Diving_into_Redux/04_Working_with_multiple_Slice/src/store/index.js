@@ -41,7 +41,7 @@ const initialAuthState = {
 };
 
 const authSlice = createSlice({
-  name: "authentification-slice",
+  name: "authentication-slice",
   initialState: initialAuthState,
   reducers: {
     login(state) {
@@ -59,7 +59,11 @@ export const counterActions = counterSlice.actions;
 export const authActions = authSlice.actions;
 
 const store = configureStore({
-  reducer: { counter: counterSlice.reducer, auth: authSlice.reducer }, // for large application
+  // for larger application
+  reducer: {
+    counter: counterSlice.reducer,
+    auth: authSlice.reducer,
+  },
 });
 
 export default store;

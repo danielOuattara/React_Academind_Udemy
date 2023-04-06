@@ -1,16 +1,15 @@
-import classes from "./Header.module.css";
+import styles from "./Header.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "./../store";
 
-const Header = () => {
+export default function Header() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const handleLogout = () => {
-    console.log("Testing handleLogin");
     dispatch(authActions.logout());
   };
   return (
-    <header className={classes.header}>
+    <header className={styles.header}>
       <h1>Redux Auth</h1>
       {isAuthenticated && (
         <nav>
@@ -29,6 +28,4 @@ const Header = () => {
       )}
     </header>
   );
-};
-
-export default Header;
+}
