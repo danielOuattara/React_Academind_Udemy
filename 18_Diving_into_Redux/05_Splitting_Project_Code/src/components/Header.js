@@ -2,7 +2,7 @@ import classes from "./Header.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "./../store/auth-slice";
 
-const Header = () => {
+export default function Header() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const handleLogout = () => {
@@ -29,6 +29,4 @@ const Header = () => {
       )}
     </header>
   );
-};
-
-export default Header;
+}

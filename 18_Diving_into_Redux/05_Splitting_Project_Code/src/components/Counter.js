@@ -5,7 +5,7 @@ import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { counterActions } from "./../store/counter-slice";
 
-const Counter = () => {
+export default function Counter() {
   const counter = useSelector((state) => state.counter.counter);
   const showCounter = useSelector((state) => state.counter.showCounter);
   const dispatch = useDispatch();
@@ -42,6 +42,4 @@ const Counter = () => {
       </button>
     </main>
   );
-};
-
-export default Counter;
+}

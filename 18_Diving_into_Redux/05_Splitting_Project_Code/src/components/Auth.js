@@ -2,7 +2,7 @@ import classes from "./Auth.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "./../store/auth-slice";
 
-const Auth = () => {
+export default function Auth() {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
@@ -25,7 +25,7 @@ const Auth = () => {
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" />
               </div>
-              {/* <button onClick={handleLogin}>Login</button> */}
+              {/* <button type="button" onClick={handleLogin}>Login</button> */}
               <button type="submit">Login</button>
             </form>
           </section>
@@ -33,6 +33,4 @@ const Auth = () => {
       )}
     </>
   );
-};
-
-export default Auth;
+}

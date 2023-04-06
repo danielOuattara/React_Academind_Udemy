@@ -1,7 +1,7 @@
 import classes from "./UserProfile.module.css";
 import { useSelector } from "react-redux";
 
-const UserProfile = () => {
+export default function UserProfile() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
@@ -13,6 +13,4 @@ const UserProfile = () => {
       )}
     </>
   );
-};
-
-export default UserProfile;
+}
