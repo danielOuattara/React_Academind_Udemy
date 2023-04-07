@@ -1,9 +1,10 @@
-import ProductItem from "./ProductItem";
-import classes from "./Products.module.css";
+import styles from "./Products.module.css";
 import products from "./../../data/product";
-const Products = (props) => {
+import ProductItem from "./ProductItem";
+
+export default function Products(props) {
   return (
-    <section className={classes.products}>
+    <section className={styles.products}>
       <h2>Buy your favorite products</h2>
       <ul>
         {products.map((item) => (
@@ -12,6 +13,4 @@ const Products = (props) => {
       </ul>
     </section>
   );
-};
-
-export default Products;
+}
