@@ -1,13 +1,13 @@
 import Card from "../UI/Card";
-import classes from "./Cart.module.css";
+import styles from "./Cart.module.css";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
 
-const Cart = (props) => {
+export default function Cart(props) {
   const { cartItems } = useSelector((state) => state.cart);
 
   return (
-    <Card className={classes.cart}>
+    <Card className={styles.cart}>
       <h2>Your Shopping Cart</h2>
       <ul>
         {cartItems.map((item) => {
@@ -16,6 +16,4 @@ const Cart = (props) => {
       </ul>
     </Card>
   );
-};
-
-export default Cart;
+}

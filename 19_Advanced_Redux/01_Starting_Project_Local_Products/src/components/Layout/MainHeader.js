@@ -1,9 +1,9 @@
-import CartButton from '../Cart/CartButton';
-import classes from './MainHeader.module.css';
+import CartButton from "../Cart/CartButton";
+import styles from "./MainHeader.module.css";
 
-const MainHeader = (props) => {
+export default function MainHeader(props) {
   return (
-    <header className={classes.header}>
+    <header className={styles.header}>
       <h1>ReduxCart</h1>
       <nav>
         <ul>
@@ -14,6 +14,4 @@ const MainHeader = (props) => {
       </nav>
     </header>
   );
-};
-
-export default MainHeader;
+}
