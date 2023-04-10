@@ -1,6 +1,6 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Products() {
+export default function ProductsPage() {
   return (
     <>
       <h1>Products Page</h1>
