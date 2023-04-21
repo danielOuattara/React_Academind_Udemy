@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
 
 export default function MainNavigation() {
@@ -10,7 +10,7 @@ export default function MainNavigation() {
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? styles.active : null)}
-              end // optional in v6.10
+              end // <-- optional in v6.10+
             >
               Home
             </NavLink>

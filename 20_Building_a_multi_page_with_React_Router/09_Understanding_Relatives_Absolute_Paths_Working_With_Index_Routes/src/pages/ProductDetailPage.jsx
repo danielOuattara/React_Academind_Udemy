@@ -10,12 +10,12 @@ export default function ProductDetailPage() {
       <p>product {params.productId} detail information</p>
       <p>
         <Link to=".." relative="route">
-          Go Back : relative = route
+          Go Back : relative = route (default, to home)
         </Link>
       </p>
       <p>
         <Link to=".." relative="path">
-          Go Back : relative = path
+          Go Back : relative = path (to products)
         </Link>
       </p>
     </>
