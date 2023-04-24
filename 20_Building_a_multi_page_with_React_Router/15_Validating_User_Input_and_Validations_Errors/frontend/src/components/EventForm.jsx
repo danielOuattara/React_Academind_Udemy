@@ -16,7 +16,8 @@ function EventForm({ method, event }) {
   const navigation = useNavigation();
   const isSubmitting = navigate.state === "submitting";
 
-  const data = useActionData();
+  const actionResponseData = useActionData();
+  console.log("actionResponseData = ", actionResponseData);
 
   if (navigation.state === "loading") {
     return <h1>Loading...</h1>;
@@ -24,20 +25,35 @@ function EventForm({ method, event }) {
 
   return (
     <Form method="post" className={classes.form}>
-      {data && data.errors && (
+      {actionResponseData && actionResponseData.errors && (
         <ul>
-          {Object.values(data.errors).map((errorItem) => (
-            <li key={errorItem}>{errorItem}</li>
+          {Object.values(actionResponseData.errors).map((errorItem) => (
+            <li style={{ color: "red" }} key={errorItem}>
+              {errorItem}
+            </li>
           ))}
         </ul>
       )}
       <p>
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title">
+          Title
+          {actionResponseData?.errors?.title && (
+            <span style={{ color: "red" }}>
+              {" "}
+              {actionResponseData?.errors?.title}
+            </span>
+          )}
+        </label>
         <input
+          style={
+            actionResponseData?.errors?.title
+              ? { border: "3px solid red" }
+              : { border: "" }
+          }
           id="title"
           type="text"
           name="title"
-          required
+          // required
           defaultValue={event ? event.title : ""}
         />
       </p>
@@ -47,7 +63,7 @@ function EventForm({ method, event }) {
           id="image"
           type="url"
           name="image"
-          required
+          // required
           defaultValue={event ? event.image : ""}
         />
       </p>
@@ -57,7 +73,7 @@ function EventForm({ method, event }) {
           id="date"
           type="date"
           name="date"
-          required
+          // required
           defaultValue={event ? event.date : ""}
         />
       </p>
@@ -67,7 +83,7 @@ function EventForm({ method, event }) {
           id="description"
           name="description"
           rows="5"
-          required
+          // required
           defaultValue={event ? event.description : ""}
         />
       </p>
