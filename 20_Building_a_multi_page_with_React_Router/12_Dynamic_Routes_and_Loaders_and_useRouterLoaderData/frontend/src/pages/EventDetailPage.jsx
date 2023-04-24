@@ -1,3 +1,26 @@
+// import { EventItem } from "./../components";
+// import { useLoaderData, json } from "react-router-dom";
+
+// export default function EventDetailPage() {
+//   const fetchedSingleEvent = useLoaderData();
+//   return <EventItem event={fetchedSingleEvent.event} />;
+// }
+
+// export const singleEventLoader = async ({ params }) => {
+//   const response = await fetch(
+//     `http://localhost:8080/events/${params.eventId}`,
+//   );
+//   if (!response.ok) {
+//     throw json(
+//       { message: "Could not fetch selected event" },
+//       { status: response.status, statusText: response.statusText },
+//     );
+//   }
+//   return response;
+// };
+
+//----------------------------------------------------------------
+
 import { EventItem } from "./../components";
 import { useRouteLoaderData, json } from "react-router-dom";
 
@@ -11,7 +34,10 @@ export const singleEventLoader = async ({ params }) => {
     `http://localhost:8080/events/${params.eventId}`,
   );
   if (!response.ok) {
-    return json({ message: "Could not fetch events" }, { status: 500 }); // 3
+    throw json(
+      { message: "Could not fetch selected event" },
+      { status: response.status, statusText: response.statusText },
+    );
   }
-  return response.json();
+  return response;
 };
