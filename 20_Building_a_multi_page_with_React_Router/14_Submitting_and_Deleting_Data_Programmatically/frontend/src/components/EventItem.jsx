@@ -5,9 +5,9 @@ function EventItem({ event }) {
   const submit = useSubmit();
 
   function startDeleteHandler() {
-    const proceed = window.confirm();
+    const proceed = window.confirm("Confirm deletion ?");
     if (proceed) {
-      submit(null, { method: "DELETE" });
+      submit(null, { method: "delete" });
     }
   }
 

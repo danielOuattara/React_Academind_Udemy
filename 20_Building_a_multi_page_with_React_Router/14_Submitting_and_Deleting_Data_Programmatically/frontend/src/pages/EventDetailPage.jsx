@@ -18,6 +18,7 @@ export const singleEventLoader = async ({ params }) => {
 
 //---------------------------------------------------------
 export const deleteEventAction = async ({ params, request }) => {
+  console.log("request = ", request);
   const response = await fetch(
     `http://localhost:8080/events/${params.eventId}`,
     {
@@ -25,6 +26,8 @@ export const deleteEventAction = async ({ params, request }) => {
       // headers: { "Content-Type": "application/json" },
     },
   );
+
+  console.log("response = ", response);
 
   if (!response.ok) {
     console.log("Error");

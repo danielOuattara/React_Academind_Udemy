@@ -1,4 +1,4 @@
-import RootLayout from "./RootLayout";
+import RootLayout, { testRootFormAction } from "./RootLayout";
 import HomePage from "./HomePage";
 import EventsPage from "./EventsPage";
 import EventDetailPage from "./EventDetailPage";
@@ -24,4 +24,5 @@ export {
   singleEventLoader,
   newEventFormAction,
   deleteEventAction,
+  testRootFormAction,
 };

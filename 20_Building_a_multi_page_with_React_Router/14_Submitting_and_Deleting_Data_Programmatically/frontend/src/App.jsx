@@ -12,11 +12,13 @@ import {
   singleEventLoader,
   newEventFormAction,
   deleteEventAction,
+  testRootFormAction,
 } from "./pages";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    action: testRootFormAction,
     element: <RootLayout />,
     children: [
       { index: true, element: <HomePage /> },

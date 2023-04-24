@@ -1,11 +1,24 @@
+import { Outlet /* , useNavigation */ } from "react-router-dom";
 import { json, redirect } from "react-router-dom";
-import { EventForm } from "./../components";
+import MainNavigation from "../components/MainNavigation";
 
-export default function NewEventPage() {
-  return <EventForm />;
+export default function RootLayout() {
+  // const navigation = useNavigation();
+  // console.log("navigation = ", navigation);
+  return (
+    <>
+      <MainNavigation />
+      <main>
+        {/* {navigation.state === "loading" && <h1>Loading...</h1>} */}
+        <Outlet />
+      </main>
+    </>
+  );
 }
 
-export const newEventFormAction = async ({ request }) => {
+/*  For testing purpose only: form action can be sent from here */
+
+export const testRootFormAction = async ({ request }) => {
   const data = await request.formData();
 
   const eventData = {
@@ -20,11 +33,6 @@ export const newEventFormAction = async ({ request }) => {
     body: JSON.stringify(eventData),
     headers: { "Content-Type": "application/json" },
   });
-
-  // send post request
-  // if (eventData.description.length < 10) {
-  //   return { error: "Description text must be over 10 characters" };
-  // }
 
   if (!response.ok) {
     console.log("ERROR !!!!");
