@@ -21,13 +21,7 @@ export const newEventFormAction = async ({ request }) => {
     headers: { "Content-Type": "application/json" },
   });
 
-  // send post request
-  // if (eventData.description.length < 10) {
-  //   return { error: "Description text must be over 10 characters" };
-  // }
-
   if (!response.ok) {
-    console.log("ERROR !!!!");
     throw json({ message: "Could not send event" }, { status: 500 }); // 3})
   }
 
