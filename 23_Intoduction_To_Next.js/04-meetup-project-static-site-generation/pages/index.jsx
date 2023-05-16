@@ -35,12 +35,30 @@ export default function HomePage(props) {
   );
 }
 
-export async function getStaticProps() {
-  // this function is executed first among others before the pre-rendering process
-  // execute code that will normally run on server during the build process
+/*
+  this function works on page component only
+  this function is executed first among others before the pre-rendering process
+  here we can execute code that will normally run on server during the build process 
+*/
+// export async function getStaticProps() {
 
+//   return {
+//     props: { meetupsData },
+//     revalidate: 10,
+//     //  revalidate: unlocks Incremental Static Generation,
+//     // that does a re-generate on the 'server'
+//     // if there are new requests coming from this page
+//   };
+// }
+
+/* 
+This function is used to regenerate the entire page for every incoming request
+Run on server after deployment
+*/
+export async function getServerSideProps(context) {
+  const req = context.req; // req is accessible
+  const res = context.res; // req is accessible
   return {
     props: { meetupsData },
-    revalidate: 20, // unlocks incremental static generation
   };
 }
