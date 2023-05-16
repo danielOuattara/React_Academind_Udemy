@@ -24,6 +24,14 @@ export const meetupsData = [
     address: "address meetup3",
     description: "meetup description here",
   },
+  {
+    id: 3,
+    image:
+      "https://bigassrunner.com/wp-content/uploads/sb-instagram-feed-images/345666643_953546555774874_6662813868547027524_n.webpfull.jpg",
+    title: "meetup 4",
+    address: "address meetup4",
+    description: "meetup description here",
+  },
 ];
 
 export default function HomePage(props) {
@@ -36,11 +44,17 @@ export default function HomePage(props) {
 }
 
 export async function getStaticProps() {
+  // this function works on page component only
+
   // this function is executed first among others before the pre-rendering process
-  // execute code that will normally run on server during the build process
+
+  // here we can execute code that will normally run on server during the build process
 
   return {
     props: { meetupsData },
-    revalidate: 20, // unlocks incremental static generation
+    revalidate: 10,
+    //  revalidate: unlocks Incremental Static Generation,
+    // that does a re-generate on the 'server'
+    // if there are new requests coming from this page
   };
 }
