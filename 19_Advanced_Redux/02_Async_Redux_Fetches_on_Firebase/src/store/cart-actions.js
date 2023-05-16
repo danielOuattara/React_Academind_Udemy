@@ -11,6 +11,7 @@ const url =
 //----------------------------------------------------------------
 export function fetchCartData() {
   return async function (dispatch) {
+    //------------------
     async function fetchData() {
       const response = await fetch(url);
       if (!response.ok) {
@@ -19,6 +20,7 @@ export function fetchCartData() {
       const data = await response.json();
       return data;
     }
+    //-------------------
 
     try {
       const cartData = await fetchData();
@@ -45,7 +47,7 @@ export function fetchCartData() {
 //----------------------------------------------------------------
 export function sendCartData(cart) {
   return async function (dispatch) {
-    // any Async task must be done here before calling dispatch
+    //! IMPORTANT any Async task must be done here before calling dispatch
 
     dispatch(
       uiActions.showNotification({
@@ -55,6 +57,7 @@ export function sendCartData(cart) {
       }),
     );
 
+    //---
     async function fetchData() {
       const response = await fetch(url, {
         method: "PUT",
@@ -70,6 +73,7 @@ export function sendCartData(cart) {
         throw new Error(`${response.statusText} ${response.status}`);
       }
     }
+    //---
 
     try {
       await fetchData();

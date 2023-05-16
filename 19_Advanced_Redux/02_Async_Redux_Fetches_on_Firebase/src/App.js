@@ -88,7 +88,6 @@ import Products from "./components/Shop/Products";
 import Notification from "./components/UI/Notification";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, Fragment } from "react";
-
 import { sendCartData, fetchCartData } from "./store/cart-actions";
 
 let isFirstLoaded = true;
@@ -96,7 +95,6 @@ let isFirstLoaded = true;
 function App() {
   const { cartIsVisible, notification } = useSelector((state) => state.ui);
   const cart = useSelector((state) => state.cart);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
