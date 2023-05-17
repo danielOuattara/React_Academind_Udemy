@@ -25,7 +25,7 @@ export const meetupsData = [
     description: "meetup description here",
   },
   {
-    id: 3,
+    id: 4,
     image:
       "https://bigassrunner.com/wp-content/uploads/sb-instagram-feed-images/345666643_953546555774874_6662813868547027524_n.webpfull.jpg",
     title: "meetup 4",
