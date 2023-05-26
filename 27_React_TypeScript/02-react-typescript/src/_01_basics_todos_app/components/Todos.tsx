@@ -54,7 +54,7 @@ import { ReactNode } from "react";
 
 //--------------------------------- NEXT
 
-import TodoClass from "../models/todoClass";
+import TodoClass from "./../models/todoClass";
 import TodoItem from "./TodoItem";
 import styles from "./Todos.module.css";
 

@@ -34,6 +34,7 @@ function App() {
   };
   return (
     <div>
+      <p>Simple useState</p>
       <NewTodo handleNewTodo={handleNewTodo} />
       <Todos todos={todos} handleRemoveTodo={handleRemoveTodo}>
         <h2>Listing all todos</h2>
