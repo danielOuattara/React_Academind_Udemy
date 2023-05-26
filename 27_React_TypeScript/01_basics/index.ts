@@ -69,3 +69,13 @@ let person3: personInterface = {
 };
 
 let students: personType[];
+
+// Functions & Types
+
+function add(a: number, b: number) {
+  return a + b;
+}
+
+function printer(value: any) {
+  console.log(value);
+}
