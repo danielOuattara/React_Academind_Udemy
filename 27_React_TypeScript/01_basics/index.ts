@@ -79,3 +79,34 @@ function add(a: number, b: number) {
 function printer(value: any) {
   console.log(value);
 }
+
+// Generics
+
+// --> 1: without generics
+function insertAtBeginning(array: any[], value: any) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const demoArray = [1, 2, 3];
+const numbersArray = insertAtBeginning(demoArray, -1); // --> [ -1, 1, 2, 3]
+
+// --2 : with Generics
+
+function insertAtBeginning2<T>(array: T[], value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const numbersArray2 = insertAtBeginning2([1, 2, 3], -1); // --> [ -1, 1, 2, 3]
+const stringsArray2 = insertAtBeginning2(["a", "b", "c"], "d"); // --> ["d", "a", "b", "c"]
+
+// OR
+
+function insertAtBeginning3<T>(array: Array<T>, value: T) {
+  const newArray = [value, ...array];
+  return newArray;
+}
+
+const numbersArray3 = insertAtBeginning2([1, 2, 3], -1); // --> [ -1, 1, 2, 3]
+const stringsArray3 = insertAtBeginning2(["a", "b", "c"], "d"); // --> ["d", "a", "b", "c"]
