@@ -2,7 +2,7 @@
 =========== */
 
 // --> primitives: number, string boolean
-
+//----------------------------------------
 let age: number;
 age = 32;
 
@@ -29,6 +29,24 @@ person1 = {
 
 //----
 
+// type inference
+//-----------------
+// --> functions types & parameters
+
+let courseTitle = "React Complete guide"; // TypeScript detect that the variable content a string
+// It infers a string as the content
+
+// courseTitle = 23; // Incorrect
+
+// Type Union
+//--------------
+
+let course: string | number = "React course";
+course = 13; // OK
+
+// Type Aliases
+// --------------
+
 type personType = {
   name: string;
   age: number;
@@ -50,16 +68,4 @@ let person3: personInterface = {
   age: 39,
 };
 
-let students: {
-  name: string;
-  age: number;
-}[];
-
-// type inference
-
-// --> functions types & parameters
-
-let courseTitle = "React Complete guide"; // TypeScript detect that the variable content a string
-// It infers a string as the content
-
-// courseTitle = 23; // Incorrect
+let students: personType[];
