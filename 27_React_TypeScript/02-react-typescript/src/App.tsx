@@ -16,19 +16,26 @@
 
 //--------------------------------------------- NEXT
 
+import NewTodo from "./components/NewTodo";
 import Todos from "./components/Todos";
 import TodoClass from "./models/todoClass";
-
-const items = [
-  new TodoClass("learn react"),
-  new TodoClass("learn typescript"),
-  new TodoClass("learn deno"),
-];
+import { useState } from "react";
 
 function App() {
+  const [todos, setTodos] = useState<Array<TodoClass>>([]);
+
+  const handleNewTodo = (textArg: string) => {
+    const newTodo = new TodoClass(textArg);
+    setTodos((prevState) => [...prevState, newTodo]);
+  };
+
+  const handleRemoveTodo = (id: string) => {
+    setTodos((prevState) => [...prevState.filter((todo) => todo.id !== id)]);
+  };
   return (
     <div>
-      <Todos items={items}>
+      <NewTodo handleNewTodo={handleNewTodo} />
+      <Todos todos={todos} handleRemoveTodo={handleRemoveTodo}>
         <h2>Listing all todos</h2>
       </Todos>
     </div>

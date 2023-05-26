@@ -4,10 +4,10 @@ import { ReactNode } from "react";
 //---------------------------------
 // // @ React.FC is deprecated !
 // //
-// const Todos: React.FC<{ items: string[] }> = (props) => {
+// const Todos: React.FC<{ todos: string[] }> = (props) => {
 //   return (
 //     <ul>
-//       {props.items.map((item) => (
+//       {props.todos.map((item) => (
 //         <li key={item}>{item}</li>
 //       ))}
 //     </ul>
@@ -19,13 +19,13 @@ import { ReactNode } from "react";
 //--------------------------------- OR
 
 // type TodosProps = {
-//   items: Array<string>;
+//   todos: Array<string>;
 // };
 
 // export default function Todos(props: TodosProps) {
 //   return (
 //     <ul>
-//       {props.items.map((item) => (
+//       {props.todos.map((item) => (
 //         <li key={item}>{item}</li>
 //       ))}
 //     </ul>
@@ -35,16 +35,16 @@ import { ReactNode } from "react";
 //--------------------------------- OR
 
 // type TodosProps = {
-//   items: Array<string>;
+//   todos: Array<string>;
 //   children?: ReactNode;
 // };
 
-// export default function Todos({ items, children }: TodosProps) {
+// export default function Todos({ todos, children }: TodosProps) {
 //   return (
 //     <>
 //       {children}
 //       <ul>
-//         {items.map((item) => (
+//         {todos.map((item) => (
 //           <li key={item}>{item}</li>
 //         ))}
 //       </ul>
@@ -56,18 +56,28 @@ import { ReactNode } from "react";
 
 import TodoClass from "../models/todoClass";
 import TodoItem from "./TodoItem";
+import styles from "./Todos.module.css";
+
 type TodosProps = {
-  items: Array<TodoClass>;
+  todos: Array<TodoClass>;
   children?: ReactNode;
+  // handleRemoveTodo: Function;
+  handleRemoveTodo: (id: string) => void;
 };
 
-export default function Todos({ items, children }: TodosProps) {
+export default function Todos(props: TodosProps) {
   return (
     <>
-      {children}
-      <ul>
-        {items.map((item) => (
-          <TodoItem key={item.id} text={item.text} />
+      {props.children}
+      <ul className={styles.todos}>
+        {props.todos.map((item) => (
+          <>
+            <TodoItem
+              text={item.text}
+              id={item.id}
+              handleRemoveTodo={props.handleRemoveTodo}
+            />
+          </>
         ))}
       </ul>
     </>
