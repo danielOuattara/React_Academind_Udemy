@@ -20,7 +20,9 @@ export default function HomePage() {
         <Link to="/products">Go to product page by Links</Link>
       </p>
       <p>
-        <button onClick={navigateHandler}>Navigate programmatically</button>
+        <button onClick={navigateHandler}>
+          Navigate programmatically to Products
+        </button>
       </p>
     </>
   );

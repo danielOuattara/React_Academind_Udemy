@@ -1,14 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
-  RootLayout,
-  HomePage,
-  EventsPage,
-  EventDetailPage,
-  NewEventPage,
   EditEventPage,
+  ErrorPage,
+  EventDetailPage,
   EventLayout,
   eventsLoader,
-  ErrorPage,
+  EventsPage,
+  HomePage,
+  NewEventPage,
+  RootLayout,
 } from "./pages";
 
 const router = createBrowserRouter([

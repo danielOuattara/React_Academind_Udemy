@@ -1,17 +1,17 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
-  RootLayout,
-  HomePage,
-  EventsPage,
-  EventDetailPage,
-  NewEventPage,
+  deleteEventAction,
   EditEventPage,
+  ErrorPage,
+  EventDetailPage,
   EventLayout,
   eventsLoader,
-  ErrorPage,
-  singleEventLoader,
+  EventsPage,
+  HomePage,
   newEventFormAction,
-  deleteEventAction,
+  NewEventPage,
+  RootLayout,
+  singleEventLoader,
   testRootFormAction,
 } from "./pages";
 

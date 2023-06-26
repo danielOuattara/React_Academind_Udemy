@@ -1,14 +1,14 @@
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // import {
-//   RootLayout,
-//   HomePage,
-//   EventsPage,
-//   EventDetailPage,
-//   NewEventPage,
 //   EditEventPage,
+//   ErrorPage,
+//   EventDetailPage,
 //   EventLayout,
 //   eventsLoader,
-//   ErrorPage,
+//   EventsPage,
+//   HomePage,
+//   NewEventPage,
+//   RootLayout,
 //   singleEventLoader,
 // } from "./pages";
 
@@ -59,15 +59,15 @@ NEW : id: "event-detail",
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
-  RootLayout,
-  HomePage,
-  EventsPage,
-  EventDetailPage,
-  NewEventPage,
   EditEventPage,
+  ErrorPage,
+  EventDetailPage,
   EventLayout,
   eventsLoader,
-  ErrorPage,
+  EventsPage,
+  HomePage,
+  NewEventPage,
+  RootLayout,
   singleEventLoader,
 } from "./pages";
 

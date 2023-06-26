@@ -1,11 +1,11 @@
 /* declaring a layout that takes some routes as its children */
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
+import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductsPage from "./pages/ProductsPage";
 import RootLayout from "./pages/RootLayout";
-import ErrorPage from "./pages/ErrorPage";
-import ProductDetailPage from "./pages/ProductDetailPage";
 
 const router = createBrowserRouter([
   {

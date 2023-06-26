@@ -1,20 +1,20 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
-  RootLayout,
-  HomePage,
-  EventsPage,
-  EventDetailPage,
-  NewEventPage,
-  EditEventPage,
-  EventLayout,
   // eventsLoader,
-  deferEventsLoader,
-  ErrorPage,
   // singleEventLoader,
-  deleteEventAction,
-  NewsLetterPage,
-  newsLetterAction,
+  deferEventsLoader,
   deferSingleEventLoader,
+  deleteEventAction,
+  EditEventPage,
+  ErrorPage,
+  EventDetailPage,
+  EventLayout,
+  EventsPage,
+  HomePage,
+  NewEventPage,
+  newsLetterAction,
+  NewsLetterPage,
+  RootLayout,
 } from "./pages";
 
 import { addEditEventAction } from "./components";

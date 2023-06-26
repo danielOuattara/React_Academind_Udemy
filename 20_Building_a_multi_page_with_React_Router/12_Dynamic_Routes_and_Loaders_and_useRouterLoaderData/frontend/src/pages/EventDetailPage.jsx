@@ -25,7 +25,7 @@ import { EventItem } from "./../components";
 import { useRouteLoaderData, json } from "react-router-dom";
 
 export default function EventDetailPage() {
-  const fetchedSingleEvent = useRouteLoaderData("event-detail");
+  const fetchedSingleEvent = useRouteLoaderData("event-detail"); // Here the diff from previous commented
   return <EventItem event={fetchedSingleEvent.event} />;
 }
 
